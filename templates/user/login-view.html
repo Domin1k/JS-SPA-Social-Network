@@ -1,0 +1,41 @@
+<div class="row">
+    <div class="col-sm-12">
+        <form class="form-horizontal" name="loginForm">
+            <fieldset>
+                <legend class="user-legend">Login</legend>
+                <div class="form-group">
+                    <label for="inputLoginUsername" class="col-lg-2 control-label">Username</label>
+                    <div class="col-lg-5">
+                        <input type="text" ng-minlength="6" name="loginUsername" ng-model="login.username" required class="form-control" id="inputLoginUsername" placeholder="Username...">
+                        <div>
+                            <span class="label label-danger error" ng-show="loginForm.loginUsername.$error.required">
+                                Required!
+                            </span>
+                            <span class="label label-danger error" ng-show="loginForm.loginUsername.$error.minlength">
+                                Min length is 6 letters!
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputLoginPassword" class="col-lg-2 control-label">Password</label>
+                    <div class="col-lg-5">
+                        <input type="password" ng-minlength="6" name="loginPassword" ng-model="login.password" required class="form-control" id="inputLoginPassword" placeholder="Email">
+                        <span class="label label-danger error" ng-show="loginForm.loginPassword.$error.required">
+                                Required!
+                        </span>
+                        <span class="label label-danger error" ng-show="loginForm.loginPassword.$error.minlength">
+                                Min length is 6 letters!
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-6 col-lg-offset-2">
+                        <button ng-click="loginUser(login)" ng-disabled="loginForm.$invalid" type="submit" class="btn btn-primary">Submit</button>
+                        <button ng-click="go('/')" type="reset" class="btn btn-default">Cancel</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

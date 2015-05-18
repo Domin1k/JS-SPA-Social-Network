@@ -1,0 +1,92 @@
+<div class="row">
+    <div class="col-sm-12">
+        <form class="form-horizontal" name="registerForm">
+            <fieldset>
+                <legend class="user-legend">Register</legend>
+                <div class="form-group">
+                    <label for="inputRegisterUsername" class="col-lg-2 control-label">Username</label>
+                    <div class="col-lg-5">
+                        <input type="text" name="registerUsername" ng-model="register.username" required ng-minlength="6" class="form-control" id="inputRegisterUsername" placeholder="Username">
+                        <span class="label label-danger error" ng-show="registerForm.registerUsername.$error.required">
+                                Required!
+                        </span>
+                        <span class="label label-danger error" ng-show="registerForm.registerUsername.$error.minlength">
+                            Min length is 6 letters!
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputRegisterPassword" class="col-lg-2 control-label">Password</label>
+                    <div class="col-lg-5">
+                        <input type="password" name="registerPassword" ng-model="register.password" required ng-minlength="6" class="form-control" id="inputRegisterPassword" placeholder="Password">
+                        <span class="label label-danger error" ng-show="registerForm.registerPassword.$error.required">
+                                Required!
+                        </span>
+                        <span class="label label-danger error" ng-show="registerForm.registerPassword.$error.minlength">
+                            Min length is 6 letters!
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputRepeatPassword" class="col-lg-2 control-label">Repeat password</label>
+                    <div class="col-lg-5">
+                        <input type="password" name="registerRepeatPassword" ng-model="register.confirmPassword" required ng-minlength="6" class="form-control" id="inputRepeatPassword" placeholder="Repeat password">
+                        <span class="label label-danger error" ng-show="registerForm.registerRepeatPassword.$error.required">
+                                Required!
+                        </span>
+                        <span class="label label-danger error" ng-show="registerForm.registerRepeatPassword.$error.minlength">
+                            Min length is 6 letters!
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputRegisterFullName" class="col-lg-2 control-label">Full name</label>
+                    <div class="col-lg-5">
+                        <input type="text" name="registerName" ng-model="register.name" required ng-minlength="6" class="form-control" id="inputRegisterFullName" placeholder="Full name">
+                        <span class="label label-danger error" ng-show="registerForm.registerName.$error.required">
+                                Required!
+                        </span>
+                        <span class="label label-danger error" ng-show="registerForm.registerName.$error.minlength">
+                            Min length is 6 letters!
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+                    <div class="col-lg-5">
+                        <input type="text" name="registerEmail" ng-model="register.email" required ng-minlength="6" class="form-control" id="inputEmail" placeholder="Email">
+                        <span class="label label-danger error" ng-show="registerForm.registerEmail.$error.required">
+                                Required!
+                        </span>
+                        <span class="label label-danger error" ng-show="registerForm.registerEmail.$error.minlength">
+                            Min length is 6 letters!
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Gender</label>
+                    <div class="col-lg-5">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios" ng-model="register.gender" id="optionsRadios1" value="1" checked="">
+                                Male
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios" ng-model="register.gender" id="optionsRadios2" value="2">
+                                Female
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-5 col-lg-offset-2">
+                        <button ng-click="registerUser(register)" ng-disabled="registerForm.$invalid" type="submit" class="btn btn-primary">Submit</button>
+                        <button ng-click="go('/')" type="reset" class="btn btn-default">Cancel</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

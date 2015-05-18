@@ -1,0 +1,31 @@
+/*Welcome screen*/
+.welcomeHeader {
+    background-color: #3a5795;
+    width: 100%;
+    height: 100%;
+}
+
+.welcomeText {
+    text-align: center;
+    color: white;
+}
+
+.login-panel {
+    margin-top: 2%;
+}
+
+.page-header {
+    border: none;
+}
+
+.customBtn {
+    width: 102px;
+}
+/*Welcome screen*/
+
+/*Login & Register*/
+.user-legend {
+    text-align: center;
+    font-size: 4rem;
+}
+/*Login*/
