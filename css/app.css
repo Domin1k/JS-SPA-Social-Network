@@ -29,3 +29,15 @@
     font-size: 4rem;
 }
 /*Login*/
+
+/*News feed*/
+.logoutBtn {
+    margin-top: 6px;
+    margin-right: 3px;
+}
+
+.nav-buttons {
+    margin: 13px 10px;
+    margin-bottom: 0;
+}
+/*News feed*/

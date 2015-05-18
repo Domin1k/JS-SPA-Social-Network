@@ -9,7 +9,7 @@ socialNetwork.controller('loginController', function ($scope, $location, authori
         authorizationService.login(loginData)
             .then(function (data) {
                 authorizationService.setUserCredentials(data);
-                // Redirect
+                $location.path('/feeds');
             }, function (error) {
                 console.log(error);
             });

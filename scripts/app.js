@@ -21,5 +21,10 @@ socialNetwork.config(function ($routeProvider) {
         controller: 'registerController'
     });
 
+    $routeProvider.when('/feeds', {
+        templateUrl: './templates/non-public/newsFeed-view.html',
+        controller: 'feedsController'
+    });
+
     $routeProvider.otherwise({redirectTo: '/'});
 });
