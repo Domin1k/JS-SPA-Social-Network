@@ -13,17 +13,21 @@ socialNetwork.config(function ($routeProvider) {
 
     $routeProvider.when('/login', {
         templateUrl: './templates/public/login-view.html',
-        controller: 'loginController'
+        controller: 'userController'
     });
 
     $routeProvider.when('/register', {
         templateUrl: './templates/public/register-view.html',
-        controller: 'registerController'
+        controller: 'userController'
     });
 
     $routeProvider.when('/feeds', {
         templateUrl: './templates/non-public/newsFeed-view.html',
         controller: 'feedsController'
+    });
+
+    $routeProvider.when('/profile', {
+        // TODO
     });
 
     $routeProvider.otherwise({redirectTo: '/'});

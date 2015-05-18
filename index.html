@@ -7,20 +7,26 @@
     <link rel="stylesheet" href="css/app.css"/>
 </head>
 <body>
-    <div ng-view></div>
+<!--ADD GOOGLE FONTS IF THERE IS TIME LEFT :P-->
+    <div ng-view=""></div>
+    <footer class="text-center">
+        <small><strong>Author:</strong>
+            <a href="https://github.com/Domin1k" target="_blank" class="ng-binding">Domin1k</a>, <strong>Copyright:</strong>
+        <br>
+        <small><strong><a href="https://github.com/Domin1k/JS-SPA-Social-Network" target="_blank">Open Source Project</a> powered by:</strong> <a href="http://angularjs.org/" target="_blank">AngularJS</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a></small>
+        </small>
+    </footer>
+
     <!--External libs-->
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular/angular-route.min.js"></script>
-
     <!-- Custom libs-->
     <script src="scripts/app.js"></script>
     <!-- Controllers-->
     <script src="scripts/controllers/welcomeController.js"></script>
-    <script src="scripts/controllers/user/loginController.js"></script>
-    <script src="scripts/controllers/user/registerController.js"></script>
+    <script src="scripts/controllers/user/userController.js"></script>
     <script src="scripts/controllers/feedsController.js"></script>
     <!-- Services-->
     <script src="scripts/services/authorizationService.js"></script>
-<div></div>
 </body>
 </html>

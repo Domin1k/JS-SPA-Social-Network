@@ -32,12 +32,27 @@
 
 /*News feed*/
 .logoutBtn {
-    margin-top: 6px;
+    margin-top: 50%;
     margin-right: 3px;
 }
 
 .nav-buttons {
-    margin: 13px 10px;
+    margin: 50% 10px;
     margin-bottom: 0;
 }
+
+.navi {
+    margin-bottom: 0;
+}
+
+.profile-image-thumb {
+    margin: 5% auto;
+}
+
+.navi-username {
+    font-size: 1.9rem;
+    color: white;
+    text-decoration: underline;
+}
+
 /*News feed*/
