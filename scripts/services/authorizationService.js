@@ -14,7 +14,7 @@ socialNetwork.factory('authorizationService', function ($http, BASE_URL, $q) {
             });
         return deffer.promise;
     };
-    
+
     requester.register = function (rawRegisterData) {
         var registerData = {
             "username": rawRegisterData.username,
@@ -31,6 +31,18 @@ socialNetwork.factory('authorizationService', function ($http, BASE_URL, $q) {
             }).error(function (error) {
                 deffer.reject(error);
             });
+        return deffer.promise;
+    };
+
+    requester.logout = function () {
+        var deffer = $q.defer();
+        $http.post(serviceUrl + '/Logout', {})
+            .success(function (data) {
+                deffer.resolve(data);
+            }).error(function (error) {
+            deffer.reject(error);
+        });
+
         return deffer.promise;
     };
 

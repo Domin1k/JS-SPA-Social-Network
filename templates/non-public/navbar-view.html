@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" ng-controller="userController">
     <div class="col-sm-12">
         <nav class="navbar navbar-default navi">
             <div class="row">
@@ -54,9 +54,9 @@
                         <ul class="nav navbar-nav navbar-right bs-glyphicons-list">
                             <li>
                                 <p class="bs-component">
-                                    <a href="" class="btn btn-warning logoutBtn">
+                                    <button  class="btn btn-warning logoutBtn" ng-click="logoutUser()">
                                         <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
-                                    </a>
+                                    </button>
                                 </p>
                             </li>
                         </ul>
