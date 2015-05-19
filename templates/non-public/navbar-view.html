@@ -6,8 +6,8 @@
                     <div class="col-md-10">
                         <div class="navbar-header">
                             <div class="profile-image-thumb">
-                                <img class="navi-picture" src="img/testP.jpg" ng-src="" alt=".."/>
-                                <span class="navi-username">{{userDetails.username}}</span>
+                                <img class="navi-picture" src="" ng-src="{{currentUserprofilepic}}" alt=".."/>
+                                <span class="navi-username">{{currentUsername}}</span>
                             </div>
                         </div>
                         <div class="pull-left">
@@ -45,7 +45,8 @@
                         <div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-1">
                             <form class="navbar-form navbar-left" role="search">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Search">
+                                    <input type="text" class="form-control navi-search" placeholder="Search">
+                                    <a href="" class="btn btn-default navi-searchImg"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
                                 </div>
                             </form>
                         </div>
@@ -54,7 +55,7 @@
                         <ul class="nav navbar-nav navbar-right bs-glyphicons-list">
                             <li>
                                 <p class="bs-component">
-                                    <button  class="btn btn-warning logoutBtn" ng-click="logoutUser()">
+                                    <button  class="btn btn-warning logoutBtn btn-lg" ng-click="logoutUser()">
                                         <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
                                     </button>
                                 </p>

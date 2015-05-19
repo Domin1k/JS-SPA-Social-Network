@@ -31,13 +31,16 @@
 /*Login*/
 
 /*News feed*/
+h1#navbar {
+    text-align: center;
+}
 .logoutBtn {
-    margin-top: 50%;
-    margin-right: 3px;
+    margin-top: 40%;
+    margin-right: 10px;
 }
 
 .nav-buttons {
-    margin: 50% 10px;
+    margin: 40% 10px;
     margin-bottom: 0;
 }
 
@@ -55,12 +58,26 @@
     text-decoration: underline;
 }
 
+.navi-picture {
+    height: 120px;
+    max-height: 120px;
+}
+
+.navi-search {
+    margin-top: 11%;
+}
+.navi-searchImg {
+    cursor: default;
+    margin-top: 11%;
+    margin-left: -1%;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
 /*News feed*/
 
 /*User Profile*/
 
 .user-profile {
-    margin: 0 7%;
     border: 2px solid black;
 }
 .btn-file {

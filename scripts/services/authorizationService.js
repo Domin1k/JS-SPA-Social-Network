@@ -24,6 +24,13 @@ socialNetwork.factory('authorizationService', function (BASE_URL, mainRequesterS
         return mainRequesterService.postRequest(serviceUrl + '/logout', {});
     };
 
+    serviceRequester.getUserPreviewData = function () {
+        var currentUser = sessionStorage['username'];
+        var url = serviceUrl + '/' + currentUser + '/preview';
+
+        return mainRequesterService.getRequest(url, {});
+    };
+
     serviceRequester.setUserCredentials = function (userCredentials) {
         sessionStorage['username'] = userCredentials.userName;
         sessionStorage['access_token'] = 'bearer ' + userCredentials.access_token;
@@ -36,12 +43,17 @@ socialNetwork.factory('authorizationService', function (BASE_URL, mainRequesterS
         if (sessionStorage.hasOwnProperty('access_token')) {
             sessionStorage.removeItem('access_token');
         }
+        localStorage.clear();
     };
 
     serviceRequester.GetHeaders = function() {
         return {
             Authorization: "Bearer " + sessionStorage['access_token']
         };
+    };
+
+    serviceRequester.isLoggedIn = function () {
+        return !!sessionStorage.getItem('access_token');
     };
 
     return serviceRequester;

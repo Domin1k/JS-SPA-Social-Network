@@ -4,6 +4,25 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
 
     $http.defaults.headers.common['Authorization'] = sessionStorage['access_token'];
 
+    $scope.userDetails = function () {
+        if (authorizationService.isLoggedIn()) {
+            if (localStorage['currentUsername'] && localStorage['currentUserprofilepic']) {
+                $scope.currentUsername = localStorage['currentUsername'];
+                $scope.currentUserprofilepic = localStorage['currentUserprofilepic'];
+            }else {
+                authorizationService.getUserPreviewData()
+                    .then(function (data) {
+                        $scope.currentUsername = data.username;
+                        $scope.currentUserprofilepic = data.profileImageData;
+                        localStorage['currentUsername'] = data.username;
+                        localStorage['currentUserprofilepic'] = data.profileImageData;
+                    }, function (error) {
+                        console.log(error);
+                    });
+            }
+        }
+    };
+
     $scope.go = function (path) {
         $location.path(path);
     };
@@ -92,4 +111,7 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
             })
     };
 
+
+    // Function calls
+    $scope.userDetails();
 });
