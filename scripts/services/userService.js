@@ -19,6 +19,16 @@ socialNetwork.factory('userService', function (BASE_URL, mainRequesterService) {
     serviceRequester.getDataAboutMe = function () {
         return mainRequesterService.getRequest(serviceUrl, {});
     };
+    
+    serviceRequester.changeUserPassword = function (userData) {
+        var newUserPassword = {
+            "oldPassword": userData.oldPassword,
+            "newPassword": userData.newPassword,
+            "confirmPassword": userData.confirmPassword
+        };
+
+        return mainRequesterService.putRequest(serviceUrl + '/ChangePassword', newUserPassword);
+    };
 
 
     return serviceRequester;

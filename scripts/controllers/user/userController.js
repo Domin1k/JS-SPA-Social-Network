@@ -44,7 +44,7 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
     };
 
     $scope.fillEditProfileData = function () {
-        if ($location.path() === '/profile') {
+        if ($location.path() === '/users/profile') {
             userService.getDataAboutMe()
                 .then(function (data) {
                     $scope.profileData = data;
@@ -80,6 +80,16 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
             }, function (error) {
                 console.log(error);
             })
-    }
+    };
+    
+    $scope.changePassword = function (userData) {
+        userService.changeUserPassword(userData)
+            .then(function (data) {
+                console.log(data);
+                $location.path('/feeds');
+            }, function (error) {
+                console.log(error);
+            })
+    };
 
 });

@@ -30,10 +30,16 @@ socialNetwork.config(function ($routeProvider) {
         controller: 'feedsController'
     });
 
-    $routeProvider.when('/profile', {
+    $routeProvider.when('/users/profile', {
         templateUrl: './templates/non-public/user-profile-view.html',
         controller: 'userController',
         title: 'Edit Profile'
+    });
+
+    $routeProvider.when('/users/changePassword', {
+        templateUrl: './templates/non-public/user-changePassword-view.html',
+        controller: 'userController',
+        title: 'Change Password'
     });
 
     $routeProvider.otherwise({redirectTo: '/'});
