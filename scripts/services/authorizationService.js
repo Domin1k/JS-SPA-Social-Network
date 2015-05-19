@@ -1,57 +1,35 @@
 'use strict';
 
-socialNetwork.factory('authorizationService', function ($http, BASE_URL, $q) {
+socialNetwork.factory('authorizationService', function (BASE_URL, mainRequesterService) {
     var serviceUrl = BASE_URL + '/users';
-    var requester = {};
+    var serviceRequester = {};
 
-    requester.login = function (loginData) {
-        var deffer = $q.defer();
-        $http.post(serviceUrl + '/login', loginData)
-            .success(function (data) {
-                deffer.resolve(data);
-            }).error(function (error) {
-                deffer.reject(error);
-            });
-        return deffer.promise;
+    serviceRequester.login = function (loginData) {
+        return mainRequesterService.postRequest(serviceUrl + '/login', loginData);
     };
 
-    requester.register = function (rawRegisterData) {
+    serviceRequester.register = function (rawRegisterData) {
         var registerData = {
             "username": rawRegisterData.username,
             "password": rawRegisterData.password,
             "confirmPassword": rawRegisterData.confirmPassword,
             "name": rawRegisterData.name,
             "email": rawRegisterData.email,
-            "gender": 0
+            "gender": rawRegisterData.gender
         };
-        var deffer = $q.defer();
-        $http.post(serviceUrl + '/Register', registerData)
-            .success(function (data) {
-                deffer.resolve(data);
-            }).error(function (error) {
-                deffer.reject(error);
-            });
-        return deffer.promise;
+        return mainRequesterService.postRequest(serviceUrl + '/register', registerData);
     };
 
-    requester.logout = function () {
-        var deffer = $q.defer();
-        $http.post(serviceUrl + '/Logout', {})
-            .success(function (data) {
-                deffer.resolve(data);
-            }).error(function (error) {
-            deffer.reject(error);
-        });
-
-        return deffer.promise;
+    serviceRequester.logout = function () {
+        return mainRequesterService.postRequest(serviceUrl + '/logout', {});
     };
 
-    requester.setUserCredentials = function (userCredentials) {
+    serviceRequester.setUserCredentials = function (userCredentials) {
         sessionStorage['username'] = userCredentials.userName;
         sessionStorage['access_token'] = 'bearer ' + userCredentials.access_token;
     };
 
-    requester.clearUserCredentials = function () {
+    serviceRequester.clearUserCredentials = function () {
         if (sessionStorage.hasOwnProperty('username')) {
             sessionStorage.removeItem('username');
         }
@@ -60,5 +38,11 @@ socialNetwork.factory('authorizationService', function ($http, BASE_URL, $q) {
         }
     };
 
-    return requester;
+    serviceRequester.GetHeaders = function() {
+        return {
+            Authorization: "Bearer " + sessionStorage['access_token']
+        };
+    };
+
+    return serviceRequester;
 });

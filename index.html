@@ -2,7 +2,7 @@
 <html ng-app="socialNetwork">
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <title ng-bind="$root.title">MyApp - Welcome</title>
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/app.css"/>
 </head>
@@ -23,11 +23,15 @@
     <script src="lib/angular/angular-resource.js"></script>
     <!-- Custom libs-->
     <script src="scripts/app.js"></script>
+    <!-- Directives-->
+    <script src="scripts/directives/bindFile.js"></script>
     <!-- Controllers-->
     <script src="scripts/controllers/welcomeController.js"></script>
     <script src="scripts/controllers/user/userController.js"></script>
     <script src="scripts/controllers/feedsController.js"></script>
     <!-- Services-->
+    <script src="scripts/services/mainRequesterService.js"></script>
     <script src="scripts/services/authorizationService.js"></script>
+    <script src="scripts/services/userService.js"></script>
 </body>
 </html>

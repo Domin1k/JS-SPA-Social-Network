@@ -1,0 +1,73 @@
+<div ng-include="'templates/non-public/navbar-view.html'"></div>
+<div ng-init="pageHeader='Edit Profile'" ng-include="'templates/non-public/page-header-view.html'"></div>
+<div class="row jumbotron">
+    <div class="col-sm-10 user-profile">
+        <div class="row">
+            <div class="col-md-3">
+                <div>
+                    <h3>Profile image</h3>
+                    <img ng-src="{{ profileData.profileImageData }}" alt="image" />
+                    <div>
+                        <span class="btn btn-default btn-file btn-primary">
+                            Upload <input type="file" ng-model="profileData.profileImageData" accept="image/*" app-filereader />
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <form class="form-horizontal">
+                    <fieldset>
+                        <legend class="user-legend">Edit profile</legend>
+                        <div class="form-group">
+                            <label for="inputEditName" class="col-lg-2 control-label">Name</label>
+                            <div class="col-lg-5">
+                                <input type="text" class="form-control" ng-model="profileData.name" id="inputEditName" placeholder="Name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEditMail" class="col-lg-2 control-label">Email</label>
+                            <div class="col-lg-5">
+                                <input type="email" class="form-control" ng-model="profileData.email" id="inputEditMail" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Gender</label>
+                            <div class="col-lg-5">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" ng-model="profileData.gender" name="optionsRadios" value="1" id="optionsRadios1" >
+                                        Male
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" ng-model="profileData.gender" name="optionsRadios" value="2" id="optionsRadios2" >
+                                        Female
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-5">
+                                <div>
+                                    <h3>Timeline image</h3>
+                                    <img ng-src="{{ profileData.coverImageData }}" alt="image" />
+                                    <div>
+                                     <span class="btn btn-default btn-file btn-primary">
+                                         Upload <input type="file" ng-model="profileData.coverImageData" accept="image/*" app-filereader />
+                                     </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-10 col-lg-offset-2">
+                                <button ng-click="editUserProfile(profileData)" type="submit" class="btn btn-primary">Edit profile</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
