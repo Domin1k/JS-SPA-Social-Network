@@ -5,7 +5,8 @@ socialNetwork.controller('feedsController', function ($scope, $http, $location, 
     $http.defaults.headers.common['Authorization'] = sessionStorage['access_token'];
 
     $scope.getMyFriends = function () {
-        if ($location.path() === '/users/feeds') {
+        if ($location.path() === '/users/feeds' ||
+            $location.path() === '/users/friendslist') {
             userService.getOwnFriends()
                 .then(function (allFriendsData) {
                     $scope.ownFriendsCollection = allFriendsData;
@@ -14,18 +15,6 @@ socialNetwork.controller('feedsController', function ($scope, $http, $location, 
                 });
         }
     };
-
-    //$scope.getWallsPost = function () {
-    //    if ($location.path() === '/users/feeds') {
-    //        userService.getWallsPost()
-    //            .then(function (newsFeedData) {
-    //                $scope.newsfeed = newsFeedData;
-    //            }, function (error) {
-    //                console.log(error);
-    //            });
-    //    }
-    //};
-
 
 
     // Functions calls

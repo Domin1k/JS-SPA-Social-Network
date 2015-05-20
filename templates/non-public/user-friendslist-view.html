@@ -1,0 +1,11 @@
+<div ng-include="'templates/non-public/navbar-view.html'"></div>
+<div ng-init="pageHeader='Friend list'" ng-include="'templates/non-public/page-header-view.html'"></div>
+<div class="row">
+    <div class="col-md-6 panel panel-success friendlist-box" >
+        <div class="panel-body" ng-repeat="friend in ownFriendsCollection">
+            <img ng-src="{{friend.profileImageData}}" alt="" class="img-thumbnail"/>
+            <span class="friendlist-names">{{friend.name}}</span>
+        </div>
+    </div>
+</div>
+

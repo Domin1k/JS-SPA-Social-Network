@@ -182,3 +182,19 @@ h1#navbar {
     text-decoration: underline;
 }
 /*Wall*/
+
+/*Friends list*/
+
+.friendlist-box {
+    margin: 0 25%;
+}
+
+.friendlist-names {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 2.1rem;
+    font-weight: bolder;
+    line-height: 1.1;
+    color: #317eac;
+}
+
+/*Friends list*/

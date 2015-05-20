@@ -48,5 +48,11 @@ socialNetwork.config(function ($routeProvider) {
         title: 'Wall'
     });
 
+    $routeProvider.when('/users/friendslist', {
+        templateUrl: './templates/non-public/user-friendslist-view.html',
+        controller: 'feedsController',
+        title: 'Friends'
+    });
+
     $routeProvider.otherwise({redirectTo: '/'});
 });
