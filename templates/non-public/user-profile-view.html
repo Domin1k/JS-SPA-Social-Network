@@ -1,13 +1,15 @@
 <div ng-include="'templates/non-public/navbar-view.html'"></div>
 <div ng-init="pageHeader='Edit Profile'" ng-include="'templates/non-public/page-header-view.html'"></div>
 <div class="row">
-    <div class="col-lg-12 user-profile">
+    <div class="col-lg-11 user-profile">
         <div class="row">
             <div class="col-md-3">
                 <div>
-                    <h3>Profile image</h3>
-                    <img class="profile-image" ng-src="{{ profileData.profileImageData }}" alt="image" />
+                    <h3 class="profile-image-header">Profile image</h3>
+                    <img class="profile-image img-thumbnail" ng-src="{{ profileData.profileImageData }}" alt="image" />
                     <div>
+                        <p class="text-primary"><strong>Allowed format: .jpg/.png</strong></p>
+                        <p class="text-primary"><strong>Limit: 128kb.</strong></p>
                         <span class="btn btn-default btn-file btn-primary">
                             Upload <input type="file" ng-model="profileData.profileImageData" accept="image/*" app-filereader />
                         </span>
@@ -50,9 +52,10 @@
                         <div class="form-group">
                             <div class="col-lg-5">
                                 <div>
-                                    <h3>Timeline image</h3>
-                                    <img ng-src="{{ profileData.coverImageData }}" alt="image" />
+                                    <h3 class="profile-image-header">Timeline image</h3>
+                                    <img ng-src="{{ profileData.coverImageData }}" alt="image" class="profile-timeline"/>
                                     <div>
+                                        <p class="text-info"><strong>Limit 1024kb.</strong></p>
                                      <span class="btn btn-default btn-file btn-primary">
                                          Upload <input type="file" ng-model="profileData.coverImageData" accept="image/*" app-filereader />
                                      </span>
