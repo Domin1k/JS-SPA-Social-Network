@@ -6,17 +6,17 @@
                     <div class="col-md-10">
                         <div class="navbar-header">
                             <div class="profile-image-thumb">
-                                <a href="#" >
+                                <a href="#/users/wall" >
                                     <img class="navi-picture" src="" ng-src="{{currentUserprofilepic}}" alt=".."/>
                                 </a>
-                                <span class="navi-username">{{currentUsername}}</span>
+                                <span ng-click="goToMyWall(currentUsername)" class="navi-username">{{currentUsername}}</span>
                             </div>
                         </div>
                         <div class="pull-left">
                             <ul class="nav navbar-nav navbar-right bs-glyphicons-list">
                                 <li>
                                     <p class="bs-component">
-                                        <a href="#/feeds" class="btn btn-success btn-sm nav-buttons">
+                                        <a href="#/users/feeds" class="btn btn-success btn-sm nav-buttons">
                                             <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
                                         </a>
                                     </p>
@@ -57,7 +57,7 @@
                         <ul class="nav navbar-nav navbar-right bs-glyphicons-list">
                             <li>
                                 <p class="bs-component">
-                                    <button  class="btn btn-warning logoutBtn btn-lg" ng-click="logoutUser()">
+                                    <button  class="btn btn-warning logoutBtn btn-default" ng-click="logoutUser()">
                                         <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
                                     </button>
                                 </p>

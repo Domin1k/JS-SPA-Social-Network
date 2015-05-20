@@ -31,6 +31,15 @@ socialNetwork.factory('authorizationService', function (BASE_URL, mainRequesterS
         return mainRequesterService.getRequest(url, {});
     };
 
+    serviceRequester.getUserFullData = function (username) {
+        return mainRequesterService.getRequest(serviceUrl + '/' + username, {});
+    };
+
+    serviceRequester.getFriendsFriendsPreview = function (username) {
+        var url = serviceUrl + '/' + username + '/friends/preview';
+        return mainRequesterService.getRequest(url, {});
+    };
+
     serviceRequester.setUserCredentials = function (userCredentials) {
         sessionStorage['username'] = userCredentials.userName;
         sessionStorage['access_token'] = 'bearer ' + userCredentials.access_token;

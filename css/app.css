@@ -59,16 +59,16 @@ h1#navbar {
 }
 
 .navi-picture {
-    height: 120px;
-    max-height: 120px;
+    height: 70px;
+    max-height: 70px;
 }
 
 .navi-search {
-    margin-top: 11%;
+    margin-top: 5%;
 }
 .navi-searchImg {
     cursor: default;
-    margin-top: 11%;
+    margin-top: 5%;
     margin-left: -1%;
     border-top-right-radius: 7px;
     border-bottom-right-radius: 7px;
@@ -137,4 +137,48 @@ h1#navbar {
     max-width: 75px;
     max-height: 75px;
 }
+
+.feed-comment-box {
+    margin: 0 177%;
+}
+
+#feedCommentBox {
+    padding:5px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    width: 80%;
+    height: 75px;
+    max-height: 75px;
+    max-width: 80%;
+}
+
+.btn-post-feed {
+    width: 130px;
+}
 /*News feed*/
+
+/*Wall*/
+.user-timeline-image {
+    width: 100%;
+    height: 250px;
+}
+
+.user-profile-image {
+    display: inline-block;
+    margin-left: 5%;
+    margin-top: -13%;
+}
+
+.btn-isFriend {
+    margin-top: -13%;
+}
+
+.user-wall-fullName {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 2.5rem;
+    font-weight: 500;
+    line-height: 1.1;
+    color: #317eac;
+    text-decoration: underline;
+}
+/*Wall*/

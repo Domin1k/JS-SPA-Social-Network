@@ -34,7 +34,7 @@ socialNetwork.factory('userService', function (BASE_URL, mainRequesterService) {
         return mainRequesterService.getRequest(serviceUrl + '/friends', {});
     };
 
-    serviceRequester.getNewsFeed = function () {
+    serviceRequester.getWallsPost = function () {
         return mainRequesterService.getRequest(serviceUrl + '/feed?StartPostId=&PageSize=5', {});
     };
 

@@ -24,7 +24,7 @@ socialNetwork.config(function ($routeProvider) {
         controller: 'userController'
     });
 
-    $routeProvider.when('/feeds', {
+    $routeProvider.when('/users/feeds', {
         title: 'News Feed',
         templateUrl: './templates/non-public/newsFeed-view.html',
         controller: 'feedsController'
@@ -40,6 +40,12 @@ socialNetwork.config(function ($routeProvider) {
         templateUrl: './templates/non-public/user-changePassword-view.html',
         controller: 'userController',
         title: 'Change Password'
+    });
+
+    $routeProvider.when('/users/wall/:username', {
+        templateUrl: './templates/non-public/user-wall-view.html',
+        controller: 'userController',
+        title: 'My wall'
     });
 
     $routeProvider.otherwise({redirectTo: '/'});

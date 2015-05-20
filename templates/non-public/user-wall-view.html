@@ -1,0 +1,20 @@
+<div ng-include="'templates/non-public/navbar-view.html'"></div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="timeline-container">
+            <img ng-src="{{userWallData.coverImageData}}" alt="timeline" class="user-timeline-image"/>
+            <img ng-src="{{userWallData.profileImageData}}" alt="timeline" class="user-profile-image"/>
+            <span class="user-wall-fullName">{{userWallData.name}}</span>
+            <a href="" class="btn btn-success btn-lg btn-isFriend" ng-show="userWallData.isFriend === true">Friend</a>
+            <a href="" class="btn btn-danger btn-lg btn-isFriend" ng-show="userWallData.isFriend === false">Add friend</a>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8">
+
+    </div>
+    <div class="col-md-4">
+        <div ng-include="'templates/non-public/friends-friendsPreview-view.html'"></div>
+    </div>
+</div>

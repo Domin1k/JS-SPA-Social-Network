@@ -1,8 +1,10 @@
 'use strict';
 
-socialNetwork.controller('userController', function ($scope, $location, $http, $rootScope, $route, authorizationService, userService) {
-
+socialNetwork.controller('userController', function ($scope, $location, $http, $rootScope, $route,
+                                                     $routeParams, authorizationService, userService) {
+    // Authorization token
     $http.defaults.headers.common['Authorization'] = sessionStorage['access_token'];
+
 
     $scope.userDetails = function () {
         if (authorizationService.isLoggedIn()) {
@@ -27,6 +29,10 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
         $location.path(path);
     };
 
+    $scope.goToMyWall = function (username) {
+        $location.path('/users/wall/' + username);
+    };
+
     $rootScope.$on("$routeChangeSuccess", function(event, currentRoute, previousRoute) {
         $rootScope.title = currentRoute.title;
     });
@@ -35,7 +41,7 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
         authorizationService.login(loginData)
             .then(function (data) {
                 authorizationService.setUserCredentials(data);
-                $location.path('/feeds');
+                $location.path('/users/feeds');
             }, function (error) {
                 console.log(error);
             });
@@ -45,7 +51,7 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
         authorizationService.register(registerData)
             .then(function (data) {
                 authorizationService.setUserCredentials(data);
-                $location.path('/feeds');
+                $location.path('/users/feeds');
             }, function (error) {
                 console.log(error);
             });
@@ -95,7 +101,7 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
         userService.editProfile(profileData)
             .then(function (data) {
                 console.log(data);
-                $location.path('/feeds');
+                $location.path('/users/feeds');
                 $route.reload();
                 authorizationService.clearUserTemporaryData();
             }, function (error) {
@@ -107,17 +113,40 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
         userService.changeUserPassword(userData)
             .then(function (data) {
                 console.log(data);
-                $location.path('/feeds');
+                $location.path('/users/feeds');
                 $route.reload();
             }, function (error) {
                 console.log(error);
             })
     };
 
+    $scope.getUserWall = function (username) {
+        if (username) {
+            authorizationService.getUserFullData(username)
+                .then(function (userFullData) {
+                    $scope.userWallData = userFullData;
+                    console.log(userFullData);
+                }, function (error) {
+                    console.log(error);
+                });
+        }
+    };
 
+    $scope.getFriendsFriendsPreview = function (username) {
+        if (username) {
+            authorizationService.getFriendsFriendsPreview(username)
+                .then(function (friendsFriendsData) {
+                    $scope.friendsFriends = friendsFriendsData.friends;
+                }, function (error) {
+                    console.log(error);
+                });
+        }
+    };
 
     // Function calls
     $scope.userDetails();
     $scope.fillEditProfileData();
+    $scope.getUserWall($routeParams.username);
+    $scope.getFriendsFriendsPreview($routeParams.username);
 
 });

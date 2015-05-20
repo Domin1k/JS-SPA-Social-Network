@@ -1,11 +1,11 @@
 'use strict';
 
-socialNetwork.controller('feedsController', function ($scope, $http, $location, userService) {
+socialNetwork.controller('feedsController', function ($scope, $http, $location, $route, userService, postService) {
 
     $http.defaults.headers.common['Authorization'] = sessionStorage['access_token'];
 
-    $scope.getFriends = function () {
-        if ($location.path() === '/feeds') {
+    $scope.getMyFriends = function () {
+        if ($location.path() === '/users/feeds') {
             userService.getOwnFriends()
                 .then(function (allFriendsData) {
                     $scope.ownFriendsCollection = allFriendsData;
@@ -15,9 +15,9 @@ socialNetwork.controller('feedsController', function ($scope, $http, $location, 
         }
     };
 
-    $scope.getNewsFeed = function () {
-        if ($location.path() === '/feeds') {
-            userService.getNewsFeed()
+    $scope.getWallsPost = function () {
+        if ($location.path() === '/users/feeds') {
+            userService.getWallsPost()
                 .then(function (newsFeedData) {
                     $scope.newsfeed = newsFeedData;
                 }, function (error) {
@@ -26,7 +26,9 @@ socialNetwork.controller('feedsController', function ($scope, $http, $location, 
         }
     };
 
+
+
     // Functions calls
-    $scope.getFriends();
-    $scope.getNewsFeed();
+    $scope.getMyFriends();
+    $scope.getWallsPost();
 });
