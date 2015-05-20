@@ -198,3 +198,20 @@ h1#navbar {
 }
 
 /*Friends list*/
+/*Search users*/
+.dropdown-users {
+    max-width: 21%;
+    position: absolute;
+    z-index: 1000;
+}
+
+.user-preview {
+
+}
+
+.user-preview-image {
+    height: 40px;
+    max-height: 40px;
+    border: 2px solid whitesmoke;
+}
+/*Search users*/

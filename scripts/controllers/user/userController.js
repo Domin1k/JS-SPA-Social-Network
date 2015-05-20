@@ -33,6 +33,10 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
         $location.path('/users/wall/' + username);
     };
 
+    $scope.goToUserWall = function (username) {
+        $location.path('/users/wall/' + username);
+    };
+
     $rootScope.$on("$routeChangeSuccess", function(event, currentRoute, previousRoute) {
         $rootScope.title = currentRoute.title;
     });
@@ -163,6 +167,16 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
             }, function (error) {
                 console.log(error);
             });
+    };
+
+    $scope.searchByUsersFullName = function (substringOfFullname) {
+        authorizationService.searchUsersByName(substringOfFullname)
+            .then(function (userNamesData) {
+                console.log(userNamesData);
+                $scope.userNames = userNamesData;
+            }, function (error) {
+                console.log(error);
+            })
     };
 
     // Function calls

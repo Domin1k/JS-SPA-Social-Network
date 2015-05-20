@@ -50,6 +50,11 @@ socialNetwork.factory('authorizationService', function (BASE_URL, mainRequesterS
         return mainRequesterService.getRequest(url, {});
     };
 
+    serviceRequester.searchUsersByName = function (fullName) {
+        var url = serviceUrl + '/search?searchTerm=' + fullName;
+        return mainRequesterService.getRequest(url, {});
+    };
+
     serviceRequester.clearUserCredentials = function () {
         if (sessionStorage.hasOwnProperty('username')) {
             sessionStorage.removeItem('username');
