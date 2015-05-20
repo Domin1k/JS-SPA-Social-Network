@@ -1,0 +1,11 @@
+<div class="panel panel-warning" ng-controller="userController">
+    <div class="panel-heading">
+        <h3 class="panel-title">Friends {{ownFriendsCollection.length}} total</h3>
+    </div>
+    <div ng-repeat="friend in ownFriendsCollection" class="panel-body">
+        <a href="" class="thumbnail">
+            <img src="" alt="img" ng-src="{{friend.profileImageData}}" class="friendsProfilePic"/>
+            <span class="friendsName">{{friend.name}}</span>
+        </a>
+    </div>
+</div>

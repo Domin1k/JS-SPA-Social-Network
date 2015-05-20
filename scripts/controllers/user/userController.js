@@ -1,21 +1,21 @@
 'use strict';
 
-socialNetwork.controller('userController', function ($scope, $location, $http, $rootScope, authorizationService, userService) {
+socialNetwork.controller('userController', function ($scope, $location, $http, $rootScope, $route, authorizationService, userService) {
 
     $http.defaults.headers.common['Authorization'] = sessionStorage['access_token'];
 
     $scope.userDetails = function () {
         if (authorizationService.isLoggedIn()) {
-            if (localStorage['currentUsername'] && localStorage['currentUserprofilepic']) {
-                $scope.currentUsername = localStorage['currentUsername'];
-                $scope.currentUserprofilepic = localStorage['currentUserprofilepic'];
+            if (sessionStorage['currentUsername'] && sessionStorage['currentUserprofilepic']) { // Optimize query to the database
+                $scope.currentUsername = sessionStorage['currentUsername'];
+                $scope.currentUserprofilepic = sessionStorage['currentUserprofilepic'];
             }else {
                 authorizationService.getUserPreviewData()
                     .then(function (data) {
                         $scope.currentUsername = data.username;
                         $scope.currentUserprofilepic = data.profileImageData;
-                        localStorage['currentUsername'] = data.username;
-                        localStorage['currentUserprofilepic'] = data.profileImageData;
+                        sessionStorage['currentUsername'] = data.username;
+                        sessionStorage['currentUserprofilepic'] = data.profileImageData;
                     }, function (error) {
                         console.log(error);
                     });
@@ -56,6 +56,7 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
             .then(function (data) {
                 console.log(data);
                 authorizationService.clearUserCredentials();
+                authorizationService.clearUserTemporaryData();
                 $location.path('/');
             }, function (err) {
                 console.log(err);
@@ -72,7 +73,6 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
                 });
         }
     };
-    $scope.fillEditProfileData();
 
     $scope.fileLoaded = function (ev) {
         var tgt = ev.target || window.event.srcElement,
@@ -96,6 +96,8 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
             .then(function (data) {
                 console.log(data);
                 $location.path('/feeds');
+                $route.reload();
+                authorizationService.clearUserTemporaryData();
             }, function (error) {
                 console.log(error);
             })
@@ -106,12 +108,25 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
             .then(function (data) {
                 console.log(data);
                 $location.path('/feeds');
+                $route.reload();
             }, function (error) {
                 console.log(error);
             })
     };
 
+    $scope.getFriends = function () {
+        if ($location.path() === '/feeds') {
+            userService.getOwnFriends()
+                .then(function (allFriendsData) {
+                    $scope.ownFriendsCollection = allFriendsData;
+                }, function (error) {
+                    console.log(error);
+                });
+        }
+    };
 
     // Function calls
     $scope.userDetails();
+    $scope.fillEditProfileData();
+    $scope.getFriends();
 });

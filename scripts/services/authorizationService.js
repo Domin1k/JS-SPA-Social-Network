@@ -43,7 +43,15 @@ socialNetwork.factory('authorizationService', function (BASE_URL, mainRequesterS
         if (sessionStorage.hasOwnProperty('access_token')) {
             sessionStorage.removeItem('access_token');
         }
-        localStorage.clear();
+    };
+
+    serviceRequester.clearUserTemporaryData = function () {
+        if (sessionStorage.hasOwnProperty('currentUserprofilepic')) {
+            sessionStorage.removeItem('currentUserprofilepic');
+        }
+        if (sessionStorage.hasOwnProperty('currentUsername')) {
+            sessionStorage.removeItem('currentUsername');
+        }
     };
 
     serviceRequester.GetHeaders = function() {

@@ -29,6 +29,10 @@ socialNetwork.factory('userService', function (BASE_URL, mainRequesterService) {
 
         return mainRequesterService.putRequest(serviceUrl + '/ChangePassword', newUserPassword);
     };
+    
+    serviceRequester.getOwnFriends = function () {
+        return mainRequesterService.getRequest(serviceUrl + '/friends', {});
+    };
 
 
     return serviceRequester;

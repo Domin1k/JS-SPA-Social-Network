@@ -80,6 +80,15 @@ h1#navbar {
 .user-profile {
     border: 2px solid black;
 }
+
+.profile-image {
+    border: 1px solid #54b4eb;
+    width: 210px;
+    height: 200px;
+    max-width: 210px;
+    max-height: 200px;
+}
+
 .btn-file {
     position: relative;
     overflow: hidden;
@@ -106,3 +115,16 @@ h1#navbar {
 }
 
 /*User Profile*/
+
+/*Feeds - Friend panel*/
+.friendsProfilePic {
+    width: 100px;
+    height: 100px;
+    max-width: 100px;
+    max-height: 100px;
+}
+.panel-body>.thumbnail {
+    width: 100px;
+    max-width: 100px;
+}
+/*Feeds - Friend panel*/
