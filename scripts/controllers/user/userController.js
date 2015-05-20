@@ -114,19 +114,10 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
             })
     };
 
-    $scope.getFriends = function () {
-        if ($location.path() === '/feeds') {
-            userService.getOwnFriends()
-                .then(function (allFriendsData) {
-                    $scope.ownFriendsCollection = allFriendsData;
-                }, function (error) {
-                    console.log(error);
-                });
-        }
-    };
+
 
     // Function calls
     $scope.userDetails();
     $scope.fillEditProfileData();
-    $scope.getFriends();
+
 });

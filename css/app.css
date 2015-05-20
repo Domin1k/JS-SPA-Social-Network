@@ -128,3 +128,13 @@ h1#navbar {
     max-width: 100px;
 }
 /*Feeds - Friend panel*/
+
+/*News feed*/
+.modal-content .thumbnail {
+    display: inline-block;
+    width: 75px;
+    height: 75px;
+    max-width: 75px;
+    max-height: 75px;
+}
+/*News feed*/
