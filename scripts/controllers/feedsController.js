@@ -15,20 +15,19 @@ socialNetwork.controller('feedsController', function ($scope, $http, $location, 
         }
     };
 
-    $scope.getWallsPost = function () {
-        if ($location.path() === '/users/feeds') {
-            userService.getWallsPost()
-                .then(function (newsFeedData) {
-                    $scope.newsfeed = newsFeedData;
-                }, function (error) {
-                    console.log(error);
-                });
-        }
-    };
+    //$scope.getWallsPost = function () {
+    //    if ($location.path() === '/users/feeds') {
+    //        userService.getWallsPost()
+    //            .then(function (newsFeedData) {
+    //                $scope.newsfeed = newsFeedData;
+    //            }, function (error) {
+    //                console.log(error);
+    //            });
+    //    }
+    //};
 
 
 
     // Functions calls
     $scope.getMyFriends();
-    $scope.getWallsPost();
 });

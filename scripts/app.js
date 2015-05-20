@@ -45,7 +45,7 @@ socialNetwork.config(function ($routeProvider) {
     $routeProvider.when('/users/wall/:username', {
         templateUrl: './templates/non-public/user-wall-view.html',
         controller: 'userController',
-        title: 'My wall'
+        title: 'Wall'
     });
 
     $routeProvider.otherwise({redirectTo: '/'});

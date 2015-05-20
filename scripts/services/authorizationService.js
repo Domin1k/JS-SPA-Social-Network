@@ -45,6 +45,11 @@ socialNetwork.factory('authorizationService', function (BASE_URL, mainRequesterS
         sessionStorage['access_token'] = 'bearer ' + userCredentials.access_token;
     };
 
+    serviceRequester.getUserWallFeed = function (username) {
+        var url = serviceUrl + '/' + username + '/wall?StartPostId=&PageSize=5';
+        return mainRequesterService.getRequest(url, {});
+    };
+
     serviceRequester.clearUserCredentials = function () {
         if (sessionStorage.hasOwnProperty('username')) {
             sessionStorage.removeItem('username');

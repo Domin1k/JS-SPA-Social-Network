@@ -12,9 +12,45 @@
 </div>
 <div class="row">
     <div class="col-md-8">
-
+        <div class="modal-dialog" ng-repeat="feed in wallFeeds">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a href="" class="thumbnail">
+                        <img alt="img" ng-src="{{feed.author.profileImageData}}"/>
+                    </a>
+                    <span class="modal-title">{{feed.author.name}}</span>
+                </div>
+                <div class="modal-body">
+                    <p>{{feed.postContent}}</p>
+                </div>
+                <div class="modal-footer">
+                    <div class="pull-left">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Like
+                            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Dislike
+                            <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <button type="button" class="btn btn-primary">Comment
+                        <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="col-md-4">
+        <form class="form-horizontal" name="feedForm">
+            <div>
+                <label for="feedCommentBox">Make post on {{wallFeeds[0].wallOwner.name}}'s wall</label>
+            </div>
+                <span class="label label-danger error" ng-show="feedForm.commentBox.$error.minlength">
+                        Min post length is 2 letters!
+                </span>
+            <textarea name="commentBox" ng-model="post.postContent" minlength="2" required id="feedCommentBox" placeholder="Enter message"></textarea>
+
+            <button ng-click="addWallPost(post)" ng-disabled="feedForm.$invalid" class="btn btn-success btn-post-feed">Post</button>
+        </form>
         <div ng-include="'templates/non-public/friends-friendsPreview-view.html'"></div>
     </div>
 </div>

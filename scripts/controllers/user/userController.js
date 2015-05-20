@@ -1,7 +1,7 @@
 'use strict';
 
 socialNetwork.controller('userController', function ($scope, $location, $http, $rootScope, $route,
-                                                     $routeParams, authorizationService, userService) {
+                                                     $routeParams, authorizationService, userService, postService) {
     // Authorization token
     $http.defaults.headers.common['Authorization'] = sessionStorage['access_token'];
 
@@ -125,7 +125,6 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
             authorizationService.getUserFullData(username)
                 .then(function (userFullData) {
                     $scope.userWallData = userFullData;
-                    console.log(userFullData);
                 }, function (error) {
                     console.log(error);
                 });
@@ -143,10 +142,37 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
         }
     };
 
+    $scope.getWallsPost = function (username) {
+        if (username) {
+            authorizationService.getUserWallFeed(username)
+                .then(function (wallFeedData) {
+                    console.log(wallFeedData);
+                    $scope.wallFeeds = wallFeedData;
+                }, function (error) {
+                    console.log(error);
+                });
+        }
+    };
+
+    $scope.addWallPost = function (postData) {
+        postData['username'] = $routeParams.username;
+        postService.addPost(postData)
+            .then(function (data) {
+                console.log(data);
+                $route.reload();
+            }, function (error) {
+                console.log(error);
+            });
+    };
+
     // Function calls
+    if (sessionStorage['username'] !== $routeParams.username) {
+        $scope.getFriendsFriendsPreview($routeParams.username);
+    }
+
     $scope.userDetails();
     $scope.fillEditProfileData();
     $scope.getUserWall($routeParams.username);
-    $scope.getFriendsFriendsPreview($routeParams.username);
+    $scope.getWallsPost($routeParams.username);
 
 });

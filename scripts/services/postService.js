@@ -7,7 +7,7 @@ socialNetwork.factory('postService', function (BASE_URL, mainRequesterService) {
     serviceRequester.addPost = function (postRawData) {
         var post = {
             "postContent":postRawData.postContent ,
-            "username":sessionStorage['username']
+            "username":postRawData.username
         };
         return mainRequesterService.postRequest(serviceUrl, post);
     };
