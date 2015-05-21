@@ -28,13 +28,13 @@
                 </div>
                 <div class="modal-footer">
                     <div class="pull-left">
-                        <button type="button" ng-hide="feed.liked" ng-click="likePost(feed.id)" class="btn btn-default btn-success btn-vote" data-dismiss="modal">Like
+                        <button type="button" ng-if="feed.liked != true" ng-click="likePost(feed)" class="btn btn-default btn-success btn-vote" data-dismiss="modal">Like
                             <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
                         </button>
-                        <button type="button" ng-show="feed.liked" ng-click="dislikePost(feed.id)" class="btn btn-default btn-danger btn-vote" data-dismiss="modal">Dislike
+                        <button type="button" ng-if="feed.liked == true" ng-click="dislikePost(feed)" class="btn btn-default btn-danger btn-vote" data-dismiss="modal">Dislike
                             <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
                         </button>
-                        <span class="badge">likes {{feed.likesCount}}</span>
+                        <span class="badge" id="postLikes{{feed.id}}">likes {{feed.likesCount}}</span>
                     </div>
                     <div class="form-group comment-box">
                         <label class="control-label pull-left" for="inputLarge">Post your comment</label>
