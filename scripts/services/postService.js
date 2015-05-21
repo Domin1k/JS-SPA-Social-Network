@@ -12,5 +12,7 @@ socialNetwork.factory('postService', function (BASE_URL, mainRequesterService) {
         return mainRequesterService.postRequest(serviceUrl, post);
     };
 
+
+
     return serviceRequester;
 });

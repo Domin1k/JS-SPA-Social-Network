@@ -13,28 +13,44 @@
 <div class="row">
     <div class="col-md-8">
         <div class="modal-dialog" ng-repeat="feed in wallFeeds">
-            <div class="modal-content">
+            <div class="modal-content" data-id="{{feed.id}}">
                 <div class="modal-header">
-                    <a href="" class="thumbnail">
+                    <a href="" class="thumbnail pull-left">
                         <img alt="img" ng-src="{{feed.author.profileImageData}}"/>
                     </a>
                     <span class="modal-title">{{feed.author.name}}</span>
+                    <div>
+                        <span class="modal-posted-date"><strong>Posted at </strong>{{feed.date | date: "dd MMM yyyy 'at' HH:mm:ss"}}</span>
+                    </div>
                 </div>
                 <div class="modal-body">
                     <p>{{feed.postContent}}</p>
                 </div>
                 <div class="modal-footer">
                     <div class="pull-left">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Like
+                        <button type="button" class="btn btn-default btn-success btn-vote" data-dismiss="modal">Like
                             <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
                         </button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Dislike
+                        <button type="button" class="btn btn-default btn-danger btn-vote" data-dismiss="modal">Dislike
                             <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
                         </button>
                     </div>
-                    <button type="button" class="btn btn-primary">Comment
+                    <div class="form-group comment-box">
+                        <label class="control-label pull-left" for="inputLarge">Post your comment</label>
+                        <input ng-model="commentRawContent" class="form-control input-lg" type="text" id="inputLarge">
+                    </div>
+                    <button ng-click="addCommentToPost(feed, commentRawContent)" type="button" id="{{feed.id}}" class="btn btn-primary" >Comment
                         <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
                     </button>
+                </div>
+                <div class="panel panel-default post-comments-container" ng-repeat="comment in feed.comments">
+                    <div class="panel-heading">
+                        <img ng-src="{{comment.author.profileImageData}}" class="img-thumbnail comment-user-image" alt="image"/>
+                        <span class="panel-title"><strong>{{comment.author.name}}</strong> posted at {{comment.date | date: "dd/MM/yy HH:mm:ss"}}</span>
+                    </div>
+                    <div class="panel-body">
+                        {{comment.commentContent}}
+                    </div>
                 </div>
             </div>
         </div>

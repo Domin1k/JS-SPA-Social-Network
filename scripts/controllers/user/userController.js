@@ -1,7 +1,8 @@
 'use strict';
 
 socialNetwork.controller('userController', function ($scope, $location, $http, $rootScope, $route,
-                                                     $routeParams, authorizationService, userService, postService) {
+                                                     $routeParams, authorizationService, userService,
+                                                     postService, commentService) {
     // Authorization token
     $http.defaults.headers.common['Authorization'] = sessionStorage['access_token'];
 
@@ -179,6 +180,25 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
             })
     };
 
+    $scope.addCommentToPost = function (feed, commentContent) {
+        commentService.addCommentToPost(feed, commentContent)
+            .then(function (data) {
+                console.log(data);
+            }, function (error) {
+                console.log(error);
+            });
+    };
+    
+    $scope.getCommentsByPostId = function (postId) {
+        console.log(postId);
+        commentService.getPostComments(postId)
+            .then(function (allCommentsForPostData) {
+                $scope.allCommentsForPost = allCommentsForPostData;
+            }, function (error) {
+                console.log(error);
+            })
+    };
+    
     // Function calls
     if (sessionStorage['username'] !== $routeParams.username) {
         $scope.getFriendsFriendsPreview($routeParams.username);
