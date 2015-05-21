@@ -11,8 +11,14 @@ socialNetwork.factory('postService', function (BASE_URL, mainRequesterService) {
         };
         return mainRequesterService.postRequest(serviceUrl, post);
     };
+    
+    serviceRequester.likePost = function (postId) {
+        return mainRequesterService.postRequest(serviceUrl + '/' + postId + '/likes');
+    };
 
-
+    serviceRequester.dislikePost = function (postId) {
+        return mainRequesterService.deleteRequest(serviceUrl + '/' + postId + '/likes');
+    };
 
     return serviceRequester;
 });

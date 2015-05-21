@@ -199,7 +199,43 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
                 console.log(error);
             })
     };
-    
+
+    $scope.likePost = function (postId) {
+        postService.likePost(postId)
+            .then(function (data) {
+                console.log('likes' + data);
+            }, function (error) {
+                console.log(error);
+            })
+    };
+
+    $scope.dislikePost = function (postId) {
+        postService.dislikePost(postId)
+            .then(function (data) {
+                console.log(data);
+            }, function (error) {
+                console.log(error);
+            })
+    };
+
+    $scope.likeComment = function (postId, commentId) {
+        commentService.likeComment(postId, commentId)
+            .then(function (data) {
+                console.log(data);
+            }, function (error) {
+                console.log(error);
+            });
+    };
+
+    $scope.dislikeComment = function (postId, commentId) {
+        commentService.dislikeComment(postId, commentId)
+            .then(function (data) {
+                console.log(data);
+            }, function (error) {
+                console.log(error);
+            });
+    };
+
     // Function calls
     if (sessionStorage['username'] !== $routeParams.username) {
         $scope.getFriendsFriendsPreview($routeParams.username);

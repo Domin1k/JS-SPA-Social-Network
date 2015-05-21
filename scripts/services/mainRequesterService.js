@@ -41,6 +41,18 @@ socialNetwork.factory('mainRequesterService', function ($http, $q) {
         return deffer.promise;
     };
 
+    baseService.deleteRequest = function (url, data) {
+        var deffer = $q.defer();
+        $http.delete(url, data)
+            .success(function (data) {
+                deffer.resolve(data);
+            })
+            .error(function (error) {
+                deffer.reject(error);
+            });
+
+        return deffer.promise;
+    };
 
     return baseService;
 });

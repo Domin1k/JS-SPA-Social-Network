@@ -28,17 +28,19 @@
                 </div>
                 <div class="modal-footer">
                     <div class="pull-left">
-                        <button type="button" class="btn btn-default btn-success btn-vote" data-dismiss="modal">Like
+                        <button type="button" ng-hide="feed.liked" ng-click="likePost(feed.id)" class="btn btn-default btn-success btn-vote" data-dismiss="modal">Like
                             <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
                         </button>
-                        <button type="button" class="btn btn-default btn-danger btn-vote" data-dismiss="modal">Dislike
+                        <button type="button" ng-show="feed.liked" ng-click="dislikePost(feed.id)" class="btn btn-default btn-danger btn-vote" data-dismiss="modal">Dislike
                             <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
                         </button>
+                        <span class="badge">likes {{feed.likesCount}}</span>
                     </div>
                     <div class="form-group comment-box">
                         <label class="control-label pull-left" for="inputLarge">Post your comment</label>
                         <input ng-model="commentRawContent" class="form-control input-lg" type="text" id="inputLarge">
                     </div>
+                    <span class="badge">{{feed.comments.length}}</span>
                     <button ng-click="addCommentToPost(feed, commentRawContent)" type="button" id="{{feed.id}}" class="btn btn-primary" >Comment
                         <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
                     </button>
@@ -53,10 +55,11 @@
                     </div>
                     <div class="container-comment-votes">
                         <div class="pull-right ">
-                            <button type="button" class="btn btn-xs btn-success btn-vote-comment" data-dismiss="modal">
+                            <span class="badge">likes {{comment.likesCount}}</span>
+                            <button type="button" ng-click="likeComment(feed.id, comment.id)" ng-hide="comment.liked" class="btn btn-xs btn-success btn-vote-comment" data-dismiss="modal">
                                 <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
                             </button>
-                            <button type="button" class="btn btn-xs btn-danger btn-vote-comment" data-dismiss="modal">
+                            <button type="button" ng-click="dislikeComment(feed.id, comment.id)" ng-show="comment.liked" class="btn btn-xs btn-danger btn-vote-comment" data-dismiss="modal">
                                 <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
                             </button>
                         </div>

@@ -17,5 +17,15 @@ socialNetwork.factory('commentService', function (BASE_URL, mainRequesterService
         return mainRequesterService.getRequest(serviceUrl + postId + '/comments', {});
     };
 
+    serviceRequester.likeComment = function (postId, commentId) {
+        var url = serviceUrl + postId + '/comments/' + commentId + '/likes';
+        return mainRequesterService.postRequest(url, {});
+    };
+
+    serviceRequester.dislikeComment = function (postId, commentId) {
+        var url = serviceUrl + postId + '/comments/' + commentId + '/likes';
+        return mainRequesterService.deleteRequest(url, {});
+    };
+
     return serviceRequester;    
 });
