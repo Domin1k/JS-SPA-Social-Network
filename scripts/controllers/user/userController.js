@@ -184,6 +184,7 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
         commentService.addCommentToPost(feed, commentContent)
             .then(function (data) {
                 console.log(data);
+                $route.reload();
             }, function (error) {
                 console.log(error);
             });

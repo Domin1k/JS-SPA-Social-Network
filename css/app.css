@@ -279,4 +279,13 @@ h1#navbar {
     width:10%;
     max-width:10%;
 }
+
+.btn-vote-comment {
+    border-radius: 100%;
+    width: 25px
+}
+
+.container-comment-votes {
+    overflow: hidden;
+}
 /*Comment box*/
