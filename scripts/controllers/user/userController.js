@@ -220,19 +220,21 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
             })
     };
 
-    $scope.likeComment = function (postId, commentId) {
-        commentService.likeComment(postId, commentId)
+    $scope.likeComment = function (post, comment) {
+        commentService.likeComment(post.id, comment.id)
             .then(function (data) {
-                console.log(data);
+                comment.liked = data.liked;
+                comment.likesCount = data.likesCount;
             }, function (error) {
                 console.log(error);
             });
     };
 
-    $scope.dislikeComment = function (postId, commentId) {
-        commentService.dislikeComment(postId, commentId)
+    $scope.dislikeComment = function (post, comment) {
+        commentService.dislikeComment(post.id, comment.id)
             .then(function (data) {
-                console.log(data);
+                comment.liked = data.liked;
+                comment.likesCount = data.likesCount;
             }, function (error) {
                 console.log(error);
             });
