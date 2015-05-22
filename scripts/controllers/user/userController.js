@@ -6,6 +6,12 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
     // Authorization token
     $http.defaults.headers.common['Authorization'] = sessionStorage['access_token'];
 
+    var Paths = {
+        feedPath : '/users/feeds',
+        wallPath : '/users/wall/',
+        profilePath : '/users/profile'
+    };
+
     $scope.userDetails = function () {
         if (authorizationService.isLoggedIn()) {
             if (sessionStorage['currentUsername'] && sessionStorage['currentUserprofilepic']) { // Optimize query to the database
@@ -27,11 +33,11 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
     };
 
     $scope.goToMyWall = function (username) {
-        $location.path('/users/wall/' + username);
+        $location.path(Paths.wallPath + username);
     };
 
     $scope.goToUserWall = function (username) {
-        $location.path('/users/wall/' + username);
+        $location.path(Paths.wallPath + username);
     };
 
     $rootScope.$on("$routeChangeSuccess", function(event, currentRoute, previousRoute) {
@@ -39,7 +45,7 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
     });
 
     $scope.fillEditProfileData = function () {
-        if ($location.path() === '/users/profile') {
+        if ($location.path() === Paths.profilePath) {
             userService.getDataAboutMe()
                 .then(function (data) {
                     $scope.profileData = data;
@@ -70,7 +76,7 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
         userService.editProfile(profileData)
             .then(function (data) {
                 console.log(data);
-                $location.path('/users/feeds');
+                $location.path(Paths.feedPath);
                 $route.reload();
                 authorizationService.clearUserTemporaryData();
             }, function (error) {
@@ -82,7 +88,7 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
         userService.changeUserPassword(userData)
             .then(function (data) {
                 console.log(data);
-                $location.path('/users/feeds');
+                $location.path(Paths.feedPath);
                 $route.reload();
             }, function (error) {
                 console.log(error);
@@ -274,12 +280,25 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
         $scope.isUserHovered = false;
     };
 
+    $scope.getNewsFeed = function () {
+        if ($location.path() === Paths.feedPath && authorizationService.isLoggedIn()) {
+            userService.getNewsFeed()
+                .then(function (feedsData) {
+                    console.log(feedsData);
+                    $scope.newsFeeds = feedsData;
+                }, function (error) {
+                    console.log(error);
+                });
+        }
+    };
+
     // Function calls
     if (authorizationService.isLoggedIn()) {
         if (sessionStorage['username'] !== $routeParams.username) {
             $scope.getFriendsFriendsPreview($routeParams.username);
         }
 
+        $scope.getNewsFeed();
         $scope.userDetails();
         $scope.fillEditProfileData();
         $scope.getUserWall($routeParams.username);

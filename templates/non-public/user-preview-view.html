@@ -11,7 +11,7 @@
             <span class="alert-link" ng-if="hoveredUserPreviewData.gender == 2">female</span>
         </span>
     </div>
-    <div>
+    <div ng-if="hoveredUserPreviewData.username != currentUsername">
         <a href="" ng-if="hoveredUserPreviewData.isFriend" class="btn btn-success disabled">Friend</a>
         <a href="" ng-if="hoveredUserPreviewData.hasPendingRequest" class="btn btn-warning disabled">Pending</a>
         <a href="" ng-click="sendFriendRequest(hoveredUserPreviewData)" ng-if="!hoveredUserPreviewData.isFriend && !hoveredUserPreviewData.hasPendingRequest" class="btn btn-info">Invite</a>

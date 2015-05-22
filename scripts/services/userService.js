@@ -50,6 +50,10 @@ socialNetwork.factory('userService', function (BASE_URL, mainRequesterService) {
         return mainRequesterService.postRequest(serviceUrl + '/requests/' + username);
     };
     
+    serviceRequester.getNewsFeed = function () {
+        var url = serviceUrl + '/feed?StartPostId=&PageSize=5';
+        return mainRequesterService.getRequest(url, {});
+    };
     
     return serviceRequester;
 });

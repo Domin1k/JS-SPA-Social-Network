@@ -1,11 +1,17 @@
-<div class="panel panel-warning" >
-    <div class="panel-heading">
-        <h3 class="panel-title">Friends {{ownFriendsCollection.length}} total</h3>
-    </div>
-    <div ng-repeat="friend in ownFriendsCollection" class="panel-body">
-        <a href="" class="thumbnail">
-            <img src="" alt="img" ng-src="{{friend.profileImageData}}" class="friendsProfilePic"/>
-            <span class="friendsName">{{friend.name}}</span>
-        </a>
+<div class="row">
+    <div class="col-md-11">
+        <div class="panel panel-warning" ng-controller="feedsController" >
+            <div class="panel-heading">
+                <h3 class="panel-title">Friends {{ownFriendsCollection.length}} total</h3>
+            </div>
+            <div class="row">
+                <div ng-repeat="friend in ownFriendsCollection" class="col-md-4 panel-body">
+                    <a href="" class="thumbnail">
+                        <img src="" alt="img" ng-src="{{friend.profileImageData}}" class="friendsProfilePic"/>
+                        <span class="friendsName">{{friend.name}}</span>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

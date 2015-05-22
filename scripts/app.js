@@ -27,7 +27,7 @@ socialNetwork.config(function ($routeProvider) {
     $routeProvider.when('/users/feeds', {
         title: 'News Feed',
         templateUrl: './templates/non-public/newsFeed-view.html',
-        controller: 'feedsController'
+        controller: 'userController'
     });
 
     $routeProvider.when('/users/profile', {

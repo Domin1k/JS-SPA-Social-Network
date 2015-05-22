@@ -1,8 +1,14 @@
 <div ng-include="'templates/non-public/navbar-view.html'"></div>
 <div ng-init="pageHeader='Friend list'" ng-include="'templates/non-public/page-header-view.html'"></div>
 <div class="row">
+    <div class="col-md-2 col-md-offset-8 form-group has-success">
+        <label class="control-label" for="inputSuccess">Search friend by name</label>
+        <input type="text" ng-model="nameFilter" placeholder="Search..." class="form-control" id="inputSuccess">
+    </div>
+</div>
+<div class="row">
     <div class="col-md-6 panel panel-success friendlist-box" >
-        <div class="panel-body" ng-repeat="friend in ownFriendsCollection">
+        <div class="panel-body" ng-repeat="friend in ownFriendsCollection | filter: nameFilter">
             <img ng-src="{{friend.profileImageData}}" alt="" class="img-thumbnail"/>
             <span class="friendlist-names">{{friend.name}}</span>
         </div>

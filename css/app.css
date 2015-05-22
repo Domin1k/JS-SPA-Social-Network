@@ -41,7 +41,12 @@ footer {
 }
 /*Login*/
 
-/*News feed*/
+/*Navbar*/
+.glyphicon:hover {
+    color: #04519b;
+/*//(#ff6707, #dd5600 60%, )*/
+}
+
 h1#navbar {
     text-align: center;
 }
@@ -84,7 +89,7 @@ h1#navbar {
     border-top-right-radius: 7px;
     border-bottom-right-radius: 7px;
 }
-/*News feed*/
+/*Navbar*/
 
 /*User Profile*/
 
