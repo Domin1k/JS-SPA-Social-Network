@@ -307,5 +307,7 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
         $interval(function () {
             $scope.getUserPendingFriendRequests();
         }, 5000);
+
+        // Add page auto-refresh
     }
 });
