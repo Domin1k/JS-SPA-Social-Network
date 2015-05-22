@@ -3,6 +3,11 @@ footer {
     margin-top: 2%;
 }
 /*Footer*/
+/*Username*/
+.username {
+    cursor: pointer;
+}
+/*Username*/
 
 /*Welcome screen*/
 .welcomeHeader {
@@ -101,6 +106,16 @@ h1#navbar {
     width: 210px;
     height: 200px;
     max-width: 210px;
+    max-height: 200px;
+}
+
+#wallUser-picture {
+    max-width: 210px;
+    max-height: 200px;
+}
+
+#wallUser-picture {
+    max-width: 100%;
     max-height: 200px;
 }
 
@@ -309,3 +324,16 @@ h1#navbar {
     width: 65px;
 }
 /*Friend pending request*/
+
+/*Selected user preview data*/
+.container-user-preview {
+    padding: 5px;
+    width: 250px;
+    position: absolute;
+    z-index: 1000;
+}
+.hoveredUser-image {
+    width: 80%;
+    max-width: 80%;
+}
+/*Selected user preview data*/

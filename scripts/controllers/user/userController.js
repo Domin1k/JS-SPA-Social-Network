@@ -259,6 +259,21 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
             });
     };
 
+    $scope.previewUser = function (feed) {
+        authorizationService.getUserPreviewDataByUsername(feed.author.username)
+            .then(function (userData) {
+                $scope.hoveredUserPreviewData = userData;
+                $scope.isUserHovered = true;
+                $scope.hoveredPostId = feed.id;
+            }, function (error) {
+                console.log(error);
+            })
+    };
+
+    $scope.stopUserPreview = function () {
+        $scope.isUserHovered = false;
+    };
+
     // Function calls
     if (authorizationService.isLoggedIn()) {
         if (sessionStorage['username'] !== $routeParams.username) {

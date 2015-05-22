@@ -31,6 +31,10 @@ socialNetwork.factory('authorizationService', function (BASE_URL, mainRequesterS
         return mainRequesterService.getRequest(url, {});
     };
 
+    serviceRequester.getUserPreviewDataByUsername = function (username) {
+        return mainRequesterService.getRequest(serviceUrl + '/' + username + '/preview?limit=1');
+    };
+
     serviceRequester.getUserFullData = function (username) {
         return mainRequesterService.getRequest(serviceUrl + '/' + username, {});
     };
