@@ -119,9 +119,9 @@ h1#navbar {
     max-height: 200px;
 }
 
-#wallUser-picture {
+#wallUser-timeline {
     max-width: 100%;
-    max-height: 200px;
+    max-height: 250px;
 }
 
 .profile-timeline {
@@ -252,6 +252,10 @@ h1#navbar {
 
 .postBoxContainer {
     margin-top: 1%;
+}
+
+.like-menu-container {
+    display: inline-block;
 }
 /*Wall*/
 

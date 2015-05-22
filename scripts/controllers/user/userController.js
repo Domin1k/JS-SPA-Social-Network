@@ -99,6 +99,7 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
         if (username) {
             authorizationService.getUserFullData(username)
                 .then(function (userFullData) {
+                    $scope.isCurrentUserFriend = userFullData.isFriend;
                     $scope.userWallData = userFullData;
                 }, function (error) {
                     console.log(error);
@@ -107,7 +108,7 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
     };
 
     $scope.getFriendsFriendsPreview = function (username) {
-        if (username) {
+        if (username && $scope.isCurrentUserFriend) {
             authorizationService.getFriendsFriendsPreview(username)
                 .then(function (friendsFriendsData) {
                     $scope.friendsFriends = friendsFriendsData.friends;
@@ -209,7 +210,7 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
         commentService.addCommentToPost(feed, commentContent)
             .then(function (data) {
                 console.log(data);
-                $route.reload();
+                feed.comments.unshift(data);
             }, function (error) {
                 console.log(error);
             });

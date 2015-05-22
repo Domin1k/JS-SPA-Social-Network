@@ -31,12 +31,14 @@
                 </div>
                 <div class="modal-footer">
                     <div class="pull-left">
-                        <button type="button" ng-if="feed.liked != true" ng-click="likePost(feed)" class="btn btn-sm btn-success btn-vote" data-dismiss="modal">Like
-                            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" ng-if="feed.liked == true" ng-click="dislikePost(feed)" class="btn btn-sm btn-danger btn-vote" data-dismiss="modal">Dislike
-                            <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-                        </button>
+                        <div class="like-menu-container" ng-if="feed.wallOwner.isFriend || feed.wallOwner.username == currentUsername">
+                            <button type="button" ng-if="feed.liked != true" ng-click="likePost(feed)" class="btn btn-sm btn-success btn-vote" data-dismiss="modal">Like
+                                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                            </button>
+                            <button type="button" ng-if="feed.liked == true" ng-click="dislikePost(feed)" class="btn btn-sm btn-danger btn-vote" data-dismiss="modal">Dislike
+                                <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+                            </button>
+                        </div>
                         <span class="badge" id="postLikes{{feed.id}}">likes {{feed.likesCount}}</span>
                     </div>
                     <form name="commentForm">
@@ -47,8 +49,8 @@
                                 Min length is 2 letters!
                         </span>
                     </div>
-                    <span class="badge">{{feed.comments.length}}</span>
-                    <button ng-disabled="commentForm.$invalid" ng-click="addCommentToPost(feed, commentRawContent)" type="button" id="{{feed.id}}" class="btn btn-primary" >Comment
+                    <span class="badge">total comments {{feed.comments.length}}</span>
+                    <button ng-if="feed.wallOwner.isFriend || feed.wallOwner.username == currentUsername" ng-disabled="commentForm.$invalid" ng-click="addCommentToPost(feed, commentRawContent)" type="button" id="{{feed.id}}" class="btn btn-primary" >Comment
                         <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
                     </button>
                     </form>
@@ -67,12 +69,14 @@
                     <div class="container-comment-votes">
                         <div class="pull-right ">
                             <span class="badge">likes {{comment.likesCount}}</span>
-                            <button type="button" ng-click="likeComment(feed, comment)" ng-hide="comment.liked" class="btn btn-xs btn-success btn-vote-comment" data-dismiss="modal">
-                                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-                            </button>
-                            <button type="button" ng-click="dislikeComment(feed, comment)" ng-show="comment.liked" class="btn btn-xs btn-danger btn-vote-comment" data-dismiss="modal">
-                                <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-                            </button>
+                            <div class="like-menu-container" ng-if="feed.wallOwner.isFriend || feed.wallOwner.username == currentUsername">
+                                <button type="button" ng-click="likeComment(feed, comment)" ng-hide="comment.liked" class="btn btn-xs btn-success btn-vote-comment" data-dismiss="modal">
+                                    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                                </button>
+                                <button type="button" ng-click="dislikeComment(feed, comment)" ng-show="comment.liked" class="btn btn-xs btn-danger btn-vote-comment" data-dismiss="modal">
+                                    <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
