@@ -161,6 +161,9 @@ h1#navbar {
 /*User Profile*/
 
 /*Feeds - Friend panel*/
+.friendsPanel {
+    margin-top: 8%;
+}
 .friendsProfilePic {
     width: 100px;
     height: 100px;
@@ -245,6 +248,10 @@ h1#navbar {
 }
 .btn-vote {
     width: 85px;
+}
+
+.postBoxContainer {
+    margin-top: 1%;
 }
 /*Wall*/
 

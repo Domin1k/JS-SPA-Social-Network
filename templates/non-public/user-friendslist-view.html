@@ -9,8 +9,8 @@
 <div class="row">
     <div class="col-md-6 panel panel-success friendlist-box" >
         <div class="panel-body" ng-repeat="friend in ownFriendsCollection | filter: nameFilter">
-            <img ng-src="{{friend.profileImageData}}" alt="" class="img-thumbnail"/>
-            <span class="friendlist-names">{{friend.name}}</span>
+            <img ng-src="{{friend.profileImageData}}" alt="image" class="img-thumbnail"/>
+            <span class="friendlist-names username">{{friend.name}}</span>
         </div>
     </div>
 </div>

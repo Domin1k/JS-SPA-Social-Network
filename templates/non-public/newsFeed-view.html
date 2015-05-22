@@ -10,7 +10,7 @@
                     <a href="" class="thumbnail pull-left">
                         <img alt="img" ng-src="{{feed.author.profileImageData}}"/>
                     </a>
-                    <span ng-mouseenter="previewUser(feed)" class="modal-title username">{{feed.author.name}}</span>
+                    <span ng-mouseenter="previewUser(feed)" ng-click="goToUserWall(feed.author.username)" class="modal-title username">{{feed.author.name}}</span>
                     <div ng-mouseleave="stopUserPreview()" ng-if="isUserHovered && hoveredPostId == feed.id" ng-include="'templates/non-public/user-preview-view.html'"></div>
                     <div>
                         <span class="modal-posted-date"><strong>Posted at </strong>{{feed.date | date: "dd MMM yyyy 'at' HH:mm:ss"}}</span>
@@ -21,10 +21,10 @@
                 </div>
                 <div class="modal-footer">
                     <div class="pull-left">
-                        <button type="button" ng-if="feed.liked != true" ng-click="likePost(feed)" class="btn btn-default btn-success btn-vote" data-dismiss="modal">Like
+                        <button type="button" ng-if="feed.liked != true" ng-click="likePost(feed)" class="btn btn-sm btn-success btn-vote" data-dismiss="modal">Like
                             <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
                         </button>
-                        <button type="button" ng-if="feed.liked == true" ng-click="dislikePost(feed)" class="btn btn-default btn-danger btn-vote" data-dismiss="modal">Dislike
+                        <button type="button" ng-if="feed.liked == true" ng-click="dislikePost(feed)" class="btn btn-sm btn-danger btn-vote" data-dismiss="modal">Dislike
                             <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
                         </button>
                         <span class="badge" id="postLikes{{feed.id}}">likes {{feed.likesCount}}</span>
@@ -46,7 +46,7 @@
                 <div class="panel panel-default post-comments-container" ng-repeat="comment in feed.comments">
                     <div class="panel-heading">
                         <img ng-src="{{comment.author.profileImageData}}" class="img-thumbnail comment-user-image" alt="image"/>
-                        <span class="panel-title"><strong  ng-mouseenter="previewUser(comment)" class="username">{{comment.author.name}}</strong>
+                        <span class="panel-title"><strong ng-click="goToUserWall(comment.author.username)"  ng-mouseenter="previewUser(comment)" class="username">{{comment.author.name}}</strong>
                             posted at {{comment.date | date: "dd/MM/yy HH:mm:ss"}}
                         </span>
                         <div ng-mouseleave="stopUserPreview()" ng-if="isUserHovered && hoveredPostId == comment.id" ng-include="'templates/non-public/user-preview-view.html'"></div>

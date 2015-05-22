@@ -24,7 +24,7 @@
                                 <li>
                                     <p class="bs-component" >
                                         <a href="#/users/friendslist"  ng-mouseenter="getFriendRequests()" id="friendsButton" class="btn btn-success btn-sm nav-buttons">
-                                            <span ng-if="hasPendingFriendRequest" class="badge">1</span>
+                                            <span ng-if="hasPendingFriendRequest" class="badge">{{pendingFriendRequestData.length || '!'}}</span>
                                             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                                         </a>
                                     </p>
