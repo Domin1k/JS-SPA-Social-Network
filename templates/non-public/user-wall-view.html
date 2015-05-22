@@ -28,7 +28,12 @@
                     </div>
                 </div>
                 <div class="modal-body">
-                    <p>{{feed.postContent}}</p>
+                    <span ng-if="feed.author.username === currentUsername" ng-click="showEditBox(feed.id)" class="badge pull-right badge-edit">Edit</span>
+                    <p class="container-postContent">{{feed.postContent}}</p>
+                    <div ng-if="isEditActivated && editPostId == feed.id">
+                        <input class="form-control input-lg form-edit-post" ng-model="feed.postContent" type="text" id="">
+                        <a href="" ng-controller="postController" ng-click="editPost(feed)" class="btn btn-sm btn-info btn-edit-post">Edit post</a>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <div class="pull-left">
@@ -40,7 +45,7 @@
                                 <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
                             </button>
                         </div>
-                        <span class="badge" id="postLikes{{feed.id}}">likes {{feed.likesCount}}</span>
+                        <span class="badge badge-likes" id="postLikes{{feed.id}}">likes {{feed.likesCount}}</span>
                     </div>
                     <form ng-if="feed.wallOwner.isFriend || feed.wallOwner.username == currentUsername" name="commentForm">
                     <div class="form-group comment-box">
@@ -69,7 +74,7 @@
                     </div>
                     <div class="container-comment-votes">
                         <div class="pull-right ">
-                            <span class="badge">likes {{comment.likesCount}}</span>
+                            <span class="badge badge-likes">likes {{comment.likesCount}}</span>
                             <div class="like-menu-container" ng-if="feed.wallOwner.isFriend || feed.wallOwner.username == currentUsername">
                                 <button type="button" ng-click="likeComment(feed, comment)" ng-hide="comment.liked" class="btn btn-xs btn-success btn-vote-comment" data-dismiss="modal">
                                     <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>

@@ -24,5 +24,13 @@ socialNetwork.factory('postService', function (BASE_URL, mainRequesterService) {
         return mainRequesterService.deleteRequest(serviceUrl + '/'+postId);
     };
 
+    serviceRequester.editPostById = function (post) {
+        var postData = {
+            "postContent": post.postContent
+        };
+
+        return mainRequesterService.putRequest(serviceUrl + '/' + post.id, postData);
+    };
+
     return serviceRequester;
 });

@@ -18,7 +18,12 @@
                     </div>
                 </div>
                 <div class="modal-body">
-                    <p>{{feed.postContent}}</p>
+                    <span ng-if="feed.author.username === currentUsername" ng-click="showEditBox(feed.id)" class="badge pull-right badge-edit">Edit</span>
+                    <p class="container-postContent">{{feed.postContent}}</p>
+                    <div ng-if="isEditActivated && editPostId == feed.id">
+                        <input class="form-control input-lg form-edit-post" ng-model="feed.postContent" type="text" id="">
+                        <a href="" ng-controller="postController" ng-click="editPost(feed)" class="btn btn-sm btn-info btn-edit-post">Edit post</a>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <div class="pull-left">

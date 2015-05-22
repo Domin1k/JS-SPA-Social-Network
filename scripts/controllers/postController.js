@@ -1,6 +1,6 @@
 'use strict';
 
-socialNetwork.controller('postController', function ($scope, $http, $route, $routeParams, postService) {
+socialNetwork.controller('postController', function ($scope, $http, $route, $routeParams, $rootScope, postService) {
     
     // Authorization token
     $http.defaults.headers.common['Authorization'] = sessionStorage['access_token'];
@@ -58,5 +58,15 @@ socialNetwork.controller('postController', function ($scope, $http, $route, $rou
             }, function (error) {
                 console.log(error);
             })
+    };
+
+    $scope.editPost = function (post) {
+        postService.editPostById(post)
+            .then(function (data) {
+                console.log(data);
+                $rootScope.isEditActivated = false;
+            }, function (error) {
+                console.log(error);
+            });
     };
 });

@@ -202,6 +202,24 @@ h1#navbar {
 .btn-post-feed {
     width: 130px;
 }
+.btn-edit-post {
+    margin-top: 1%;
+}
+
+.form-edit-post {
+    width: 80%;
+    margin-top: 4%;
+    color: #022a50;
+}
+
+.badge-edit {
+    background-color: #022a50;
+    cursor: pointer;
+}
+
+.container-postContent {
+    overflow-wrap: break-word;
+}
 /*News feed*/
 
 /*Wall*/
@@ -256,6 +274,10 @@ h1#navbar {
 
 .like-menu-container {
     display: inline-block;
+}
+
+.badge-likes {
+    background-color: #88c149;
 }
 /*Wall*/
 

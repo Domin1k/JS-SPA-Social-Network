@@ -216,8 +216,6 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
             })
     };
 
-
-
     $scope.likeComment = function (post, comment) {
         commentService.likeComment(post.id, comment.id)
             .then(function (data) {
@@ -237,7 +235,6 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
                 console.log(error);
             });
     };
-
 
     $scope.previewUser = function (feed) {
         authorizationService.getUserPreviewDataByUsername(feed.author.username)
@@ -264,6 +261,11 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
                     console.log(error);
                 });
         }
+    };
+
+    $scope.showEditBox = function (postId) {
+        $rootScope.isEditActivated = !$rootScope.isEditActivated;
+        $scope.editPostId = postId;
     };
 
     // Function calls
