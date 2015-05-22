@@ -17,6 +17,17 @@ socialNetwork.controller('postController', function ($scope, $http, $route, $rou
         }
     };
 
+    $scope.deleteFeedPost = function (post) {
+        if (confirm('Are you sure you want to delete this post?')) {
+            postService.deletePostById(post.id)
+                .then(function (data) {
+                    var postIndex = $scope.newsFeeds.indexOf(post);
+                    $scope.newsFeeds.splice(postIndex, 1);
+                }, function (error) {
+                    console.log(error);
+                })
+        }
+    };
     $scope.addWallPost = function (postData) {
         console.log(postData);
         postData['username'] = $routeParams.username;

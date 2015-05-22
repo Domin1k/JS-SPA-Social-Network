@@ -7,6 +7,7 @@
         <div class="modal-dialog" ng-repeat="feed in newsFeeds">
             <div class="modal-content" data-id="{{feed.id}}">
                 <div class="modal-header">
+                    <button ng-if="feed.author.username === currentUsername" ng-controller="postController" type="button" ng-click="deleteFeedPost(feed)" class="close" data-dismiss="modal" aria-hidden="true">x</button>
                     <a href="" class="thumbnail pull-left">
                         <img alt="img" ng-src="{{feed.author.profileImageData}}"/>
                     </a>
@@ -21,10 +22,10 @@
                 </div>
                 <div class="modal-footer">
                     <div class="pull-left">
-                        <button type="button" ng-if="feed.liked != true" ng-click="likePost(feed)" class="btn btn-sm btn-success btn-vote" data-dismiss="modal">Like
+                        <button ng-controller="postController" type="button" ng-if="feed.liked != true" ng-click="likePost(feed)" class="btn btn-sm btn-success btn-vote" data-dismiss="modal">Like
                             <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
                         </button>
-                        <button type="button" ng-if="feed.liked == true" ng-click="dislikePost(feed)" class="btn btn-sm btn-danger btn-vote" data-dismiss="modal">Dislike
+                        <button ng-controller="postController" type="button" ng-if="feed.liked == true" ng-click="dislikePost(feed)" class="btn btn-sm btn-danger btn-vote" data-dismiss="modal">Dislike
                             <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
                         </button>
                         <span class="badge" id="postLikes{{feed.id}}">likes {{feed.likesCount}}</span>
