@@ -1,11 +1,10 @@
 'use strict';
 
 socialNetwork.controller('userController', function ($scope, $location, $http, $rootScope, $route,
-                                                     $routeParams, authorizationService, userService,
-                                                     postService, commentService) {
+                                                     $routeParams, $interval, authorizationService,
+                                                     userService, postService, commentService) {
     // Authorization token
     $http.defaults.headers.common['Authorization'] = sessionStorage['access_token'];
-
 
     $scope.userDetails = function () {
         if (authorizationService.isLoggedIn()) {
@@ -17,6 +16,7 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
                     .then(function (data) {
                         $scope.currentUsername = data.username;
                         $scope.currentUserprofilepic = data.profileImageData;
+                        $scope.hasPendingFriendRequest = data.hasPendingRequest;
                         sessionStorage['currentUsername'] = data.username;
                         sessionStorage['currentUserprofilepic'] = data.profileImageData;
                     }, function (error) {
@@ -24,10 +24,6 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
                     });
             }
         }
-    };
-
-    $scope.go = function (path) {
-        $location.path(path);
     };
 
     $scope.goToMyWall = function (username) {
@@ -41,38 +37,6 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
     $rootScope.$on("$routeChangeSuccess", function(event, currentRoute, previousRoute) {
         $rootScope.title = currentRoute.title;
     });
-
-    $scope.loginUser = function (loginData) {
-        authorizationService.login(loginData)
-            .then(function (data) {
-                authorizationService.setUserCredentials(data);
-                $location.path('/users/feeds');
-            }, function (error) {
-                console.log(error);
-            });
-    };
-
-    $scope.registerUser = function (registerData) {
-        authorizationService.register(registerData)
-            .then(function (data) {
-                authorizationService.setUserCredentials(data);
-                $location.path('/users/feeds');
-            }, function (error) {
-                console.log(error);
-            });
-    };
-
-    $scope.logoutUser = function () {
-        authorizationService.logout()
-            .then(function (data) {
-                console.log(data);
-                authorizationService.clearUserCredentials();
-                authorizationService.clearUserTemporaryData();
-                $location.path('/');
-            }, function (err) {
-                console.log(err);
-            })
-    };
 
     $scope.fillEditProfileData = function () {
         if ($location.path() === '/users/profile') {
@@ -147,6 +111,61 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
         }
     };
 
+    $scope.getUserPendingFriendRequests = function () {
+        if (authorizationService.isLoggedIn()) {
+            authorizationService.getUserPreviewData()
+                .then(function (data) {
+                   $scope.hasPendingFriendRequest = data.hasPendingRequest;
+                }, function (error) {
+                    console.log(error);
+                });
+        }
+    };
+
+    $scope.hideUserRequestContainer = function () {
+        $scope.isPendingRequestHovered = false;
+    };
+
+    $scope.getFriendRequests = function () {
+        if ($scope.hasPendingFriendRequest) {
+            userService.getFriendRequests()
+                .then(function (data) {
+                    console.log(data);
+                    $scope.pendingFriendRequestData = data;
+                    $scope.isPendingRequestHovered = true;
+                }, function (error) {
+                    console.log(error);
+                })
+        }
+    };
+
+    $scope.acceptFriendRequest = function (request) {
+        userService.approveFriendRequest(request.id)
+            .then(function (data) {
+                $route.reload();
+            }, function (error) {
+                console.log(error);
+            });
+    };
+
+    $scope.declineFriendRequest = function (request) {
+        userService.declineFriendRequest(request.id)
+            .then(function (data) {
+                $route.reload();
+            }, function (error) {
+                console.log(error);
+            });
+    };
+
+    $scope.sendFriendRequest = function (request) {
+        userService.sendFriendRequest(request.username)
+            .then(function (data) {
+                console.log(data);
+            }, function (error) {
+                console.log(error); 
+            });
+    };
+    
     $scope.getWallsPost = function (username) {
         if (username) {
             authorizationService.getUserWallFeed(username)
@@ -241,13 +260,17 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
     };
 
     // Function calls
-    if (sessionStorage['username'] !== $routeParams.username) {
-        $scope.getFriendsFriendsPreview($routeParams.username);
+    if (authorizationService.isLoggedIn()) {
+        if (sessionStorage['username'] !== $routeParams.username) {
+            $scope.getFriendsFriendsPreview($routeParams.username);
+        }
+
+        $scope.userDetails();
+        $scope.fillEditProfileData();
+        $scope.getUserWall($routeParams.username);
+        $scope.getWallsPost($routeParams.username);
+        $interval(function () {
+            $scope.getUserPendingFriendRequests();
+        }, 5000);
     }
-
-    $scope.userDetails();
-    $scope.fillEditProfileData();
-    $scope.getUserWall($routeParams.username);
-    $scope.getWallsPost($routeParams.username);
-
 });

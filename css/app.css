@@ -260,7 +260,11 @@ h1#navbar {
     border: 2px solid whitesmoke;
 }
 /*Search users*/
-
+/*Nav bar */
+#friendsButton {
+    margin-top:23px;
+}
+/*Nav bar */
 /*Comment box*/
 .comment-box {
     margin-top: 10%;
@@ -289,3 +293,19 @@ h1#navbar {
     overflow: hidden;
 }
 /*Comment box*/
+
+/*Friend pending request*/
+.pending-user-container {
+    padding: 5px;
+    width:250px;
+    position: absolute;
+    z-index: 45;
+}
+.img-small {
+    width: 55%;
+    max-width: 55%;
+}
+.approveRequestBtns {
+    width: 65px;
+}
+/*Friend pending request*/

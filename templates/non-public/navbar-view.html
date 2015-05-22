@@ -22,11 +22,13 @@
                                     </p>
                                 </li>
                                 <li>
-                                    <p class="bs-component">
-                                        <a href="#/users/friendslist" class="btn btn-success btn-sm nav-buttons">
+                                    <p class="bs-component" >
+                                        <a href="#/users/friendslist"  ng-mouseenter="getFriendRequests()" id="friendsButton" class="btn btn-success btn-sm nav-buttons">
+                                            <span ng-if="hasPendingFriendRequest" class="badge">1</span>
                                             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                                         </a>
                                     </p>
+                                    <div ng-mouseleave="hideUserRequestContainer()" ng-if="hasPendingFriendRequest && isPendingRequestHovered" ng-include="'templates/non-public/user-pendingFriend-view.html'"></div>
                                 </li>
                                 <li>
                                     <p class="bs-component">
@@ -57,7 +59,7 @@
                     <div class="col-md-2 pull-right" >
                         <ul class="nav navbar-nav navbar-right bs-glyphicons-list">
                             <li>
-                                <p class="bs-component">
+                                <p class="bs-component" ng-controller="userAuthenticationController">
                                     <button  class="btn btn-warning logoutBtn btn-default" ng-click="logoutUser()">
                                         <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
                                     </button>

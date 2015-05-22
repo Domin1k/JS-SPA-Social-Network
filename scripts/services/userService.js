@@ -34,5 +34,22 @@ socialNetwork.factory('userService', function (BASE_URL, mainRequesterService) {
         return mainRequesterService.getRequest(serviceUrl + '/friends', {});
     };
 
+    serviceRequester.getFriendRequests = function () {
+        return mainRequesterService.getRequest(serviceUrl + '/requests', {});
+    };
+
+    serviceRequester.approveFriendRequest = function (requestId) {
+        return mainRequesterService.putRequest(serviceUrl + '/requests/' + requestId + '?status=approved', {});
+    };
+
+    serviceRequester.declineFriendRequest = function (requestId) {
+        return mainRequesterService.putRequest(serviceUrl + '/requests/' + requestId + '?status=rejected', {});
+    };
+
+    serviceRequester.sendFriendRequest = function (username) {
+        return mainRequesterService.postRequest(serviceUrl + '/requests/' + username);
+    };
+    
+    
     return serviceRequester;
 });

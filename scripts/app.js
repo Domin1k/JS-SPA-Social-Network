@@ -15,13 +15,13 @@ socialNetwork.config(function ($routeProvider) {
     $routeProvider.when('/login', {
         title: 'Login',
         templateUrl: './templates/public/login-view.html',
-        controller: 'userController'
+        controller: 'userAuthenticationController'
     });
 
     $routeProvider.when('/register', {
         title: 'Register',
         templateUrl: './templates/public/register-view.html',
-        controller: 'userController'
+        controller: 'userAuthenticationController'
     });
 
     $routeProvider.when('/users/feeds', {

@@ -5,8 +5,10 @@
             <img ng-src="{{userWallData.coverImageData}}" alt="timeline" class="user-timeline-image"/>
             <img ng-src="{{userWallData.profileImageData}}" alt="timeline" class="img-thumbnail user-profile-image"/>
             <span class="user-wall-fullName">{{userWallData.name}}</span>
-            <a href="" class="btn btn-success btn-lg btn-isFriend" ng-show="userWallData.isFriend === true">Friend</a>
-            <a href="" class="btn btn-danger btn-lg btn-isFriend" ng-show="userWallData.isFriend === false">Add friend</a>
+            <div class="pull-right" ng-if="userWallData.username != currentUsername">
+                <a href="" class="btn btn-success btn-lg" ng-show="userWallData.isFriend === true">Friend</a>
+                <a href="" ng-click="sendFriendRequest(userWallData)" class="btn btn-danger btn-lg" ng-show="userWallData.isFriend === false">Add friend</a>
+            </div>
         </div>
     </div>
 </div>
@@ -36,14 +38,19 @@
                         </button>
                         <span class="badge" id="postLikes{{feed.id}}">likes {{feed.likesCount}}</span>
                     </div>
+                    <form name="commentForm">
                     <div class="form-group comment-box">
                         <label class="control-label pull-left" for="inputLarge">Post your comment</label>
-                        <input ng-model="commentRawContent" class="form-control input-lg" type="text" id="inputLarge">
+                        <input name="commentField" ng-minlength="2" required ng-model="commentRawContent" class="form-control input-lg" type="text" id="inputLarge">
+                        <span class="label label-danger error" ng-show="commentForm.commentField.$error.minlength">
+                                Min length is 2 letters!
+                        </span>
                     </div>
                     <span class="badge">{{feed.comments.length}}</span>
-                    <button ng-click="addCommentToPost(feed, commentRawContent)" type="button" id="{{feed.id}}" class="btn btn-primary" >Comment
+                    <button ng-disabled="commentForm.$invalid" ng-click="addCommentToPost(feed, commentRawContent)" type="button" id="{{feed.id}}" class="btn btn-primary" >Comment
                         <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
                     </button>
+                    </form>
                 </div>
                 <div class="panel panel-default post-comments-container" ng-repeat="comment in feed.comments">
                     <div class="panel-heading">
