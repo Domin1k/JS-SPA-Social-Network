@@ -266,6 +266,7 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
             });
     };
 
+
     $scope.previewUser = function (feed) {
         authorizationService.getUserPreviewDataByUsername(feed.author.username)
             .then(function (userData) {

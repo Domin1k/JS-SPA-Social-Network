@@ -23,6 +23,21 @@ socialNetwork.controller('feedsController', function ($scope, $http, $location, 
         }
     };
 
+    $scope.stopFriendPreview = function () {
+        $scope.isFriendHovered = false;
+    };
+
+    $scope.previewFriend = function (friend) {
+        authorizationService.getUserPreviewDataByUsername(friend.username)
+            .then(function (userData) {
+                $scope.hoveredUserPreviewData = userData;
+                $scope.isFriendHovered = true;
+                $scope.hoveredPostId = friend.id;
+            }, function (error) {
+                console.log(error);
+            })
+    };
+
     // Functions calls
     if (authorizationService.isLoggedIn()) {
         $scope.getMyFriends();
