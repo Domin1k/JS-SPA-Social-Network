@@ -185,17 +185,6 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
         }
     };
 
-    $scope.addWallPost = function (postData) {
-        postData['username'] = $routeParams.username;
-        postService.addPost(postData)
-            .then(function (data) {
-                console.log(data);
-                $route.reload();
-            }, function (error) {
-                console.log(error);
-            });
-    };
-
     $scope.searchByUsersFullName = function (substringOfFullname) {
         authorizationService.searchUsersByName(substringOfFullname)
             .then(function (userNamesData) {
@@ -210,6 +199,7 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
         commentService.addCommentToPost(feed, commentContent)
             .then(function (data) {
                 console.log(data);
+                $('#inputLarge').val('');
                 feed.comments.unshift(data);
             }, function (error) {
                 console.log(error);
@@ -226,25 +216,7 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
             })
     };
 
-    $scope.likePost = function (post) {
-        postService.likePost(post.id)
-            .then(function (data) {
-                post.liked = data.liked;
-                post.likesCount = data.likesCount;
-            }, function (error) {
-                console.log(error);
-            })
-    };
 
-    $scope.dislikePost = function (post) {
-        postService.dislikePost(post.id)
-            .then(function (data) {
-                post.liked = data.liked;
-                post.likesCount = data.likesCount;
-            }, function (error) {
-                console.log(error);
-            })
-    };
 
     $scope.likeComment = function (post, comment) {
         commentService.likeComment(post.id, comment.id)

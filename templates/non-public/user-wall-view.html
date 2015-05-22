@@ -17,6 +17,7 @@
         <div class="modal-dialog" ng-repeat="feed in wallFeeds">
             <div class="modal-content" data-id="{{feed.id}}">
                 <div class="modal-header">
+                    <button ng-controller="postController" type="button" ng-click="deletePost(feed)" class="close" data-dismiss="modal" aria-hidden="true">x</button>
                     <a href="" class="thumbnail pull-left">
                         <img alt="img" ng-src="{{feed.author.profileImageData}}"/>
                     </a>
@@ -32,10 +33,10 @@
                 <div class="modal-footer">
                     <div class="pull-left">
                         <div class="like-menu-container" ng-if="feed.wallOwner.isFriend || feed.wallOwner.username == currentUsername">
-                            <button type="button" ng-if="feed.liked != true" ng-click="likePost(feed)" class="btn btn-sm btn-success btn-vote" data-dismiss="modal">Like
+                            <button ng-controller="postController" type="button" ng-if="feed.liked != true" ng-click="likePost(feed)" class="btn btn-sm btn-success btn-vote" data-dismiss="modal">Like
                                 <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
                             </button>
-                            <button type="button" ng-if="feed.liked == true" ng-click="dislikePost(feed)" class="btn btn-sm btn-danger btn-vote" data-dismiss="modal">Dislike
+                            <button ng-controller="postController" type="button" ng-if="feed.liked == true" ng-click="dislikePost(feed)" class="btn btn-sm btn-danger btn-vote" data-dismiss="modal">Dislike
                                 <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
                             </button>
                         </div>
@@ -93,7 +94,7 @@
                 </span>
             <textarea name="commentBox" ng-model="post.postContent" minlength="2" required id="feedCommentBox" placeholder="Enter message"></textarea>
 
-            <button ng-click="addWallPost(post)" ng-disabled="feedForm.$invalid" class="btn btn-success btn-post-feed">Post</button>
+            <button ng-controller="postController" ng-click="addWallPost(post)" ng-disabled="feedForm.$invalid" class="btn btn-success btn-post-feed">Post</button>
         </form>
         <div ng-include="'templates/non-public/friends-friendsPreview-view.html'"></div>
     </div>

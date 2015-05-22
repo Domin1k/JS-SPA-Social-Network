@@ -20,5 +20,9 @@ socialNetwork.factory('postService', function (BASE_URL, mainRequesterService) {
         return mainRequesterService.deleteRequest(serviceUrl + '/' + postId + '/likes');
     };
 
+    serviceRequester.deletePostById = function (postId) {
+        return mainRequesterService.deleteRequest(serviceUrl + '/'+postId);
+    };
+
     return serviceRequester;
 });
