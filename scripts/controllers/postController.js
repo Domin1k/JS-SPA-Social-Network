@@ -1,6 +1,6 @@
 'use strict';
 
-socialNetwork.controller('postController', function ($scope, $http, $route, $routeParams, $rootScope, postService) {
+socialNetwork.controller('postController', function ($scope, $http, $route, $routeParams, $rootScope, postService, notifyService) {
     
     // Authorization token
     $http.defaults.headers.common['Authorization'] = sessionStorage['access_token'];
@@ -11,8 +11,9 @@ socialNetwork.controller('postController', function ($scope, $http, $route, $rou
                 .then(function (data) {
                     var postIndex = $scope.wallFeeds.indexOf(post);
                     $scope.wallFeeds.splice(postIndex, 1);
+                    notifyService.showInfo('Successfully deleted post!');
                 }, function (error) {
-                    console.log(error);
+                    notifyService.showError('Delete post failed ', error);
                 })
         }
     };
@@ -23,8 +24,9 @@ socialNetwork.controller('postController', function ($scope, $http, $route, $rou
                 .then(function (data) {
                     var postIndex = $scope.newsFeeds.indexOf(post);
                     $scope.newsFeeds.splice(postIndex, 1);
+                    notifyService.showInfo('Successfully deleted post!');
                 }, function (error) {
-                    console.log(error);
+                    notifyService.showError('Delete post failed ', error);
                 })
         }
     };
@@ -33,10 +35,10 @@ socialNetwork.controller('postController', function ($scope, $http, $route, $rou
         postData['username'] = $routeParams.username;
         postService.addPost(postData)
             .then(function (data) {
-                console.log(data);
                 $route.reload();
+                notifyService.showInfo('Successfully added post!');
             }, function (error) {
-                console.log(error);
+                notifyService.showError('Add post failed ', error);
             });
     };
 
@@ -45,8 +47,9 @@ socialNetwork.controller('postController', function ($scope, $http, $route, $rou
             .then(function (data) {
                 post.liked = data.liked;
                 post.likesCount = data.likesCount;
+                notifyService.showInfo('Successfully liked post!')
             }, function (error) {
-                console.log(error);
+                notifyService.showError('Like post failed ', error);
             })
     };
 
@@ -55,18 +58,19 @@ socialNetwork.controller('postController', function ($scope, $http, $route, $rou
             .then(function (data) {
                 post.liked = data.liked;
                 post.likesCount = data.likesCount;
+                notifyService.showInfo('Successfully disliked post!')
             }, function (error) {
-                console.log(error);
+                notifyService.showError('Dislike post failed ', error);
             })
     };
 
     $scope.editPost = function (post) {
         postService.editPostById(post)
             .then(function (data) {
-                console.log(data);
                 $rootScope.isEditActivated = false;
+                notifyService.showInfo('Successfully disliked post!')
             }, function (error) {
-                console.log(error);
+                notifyService.showError('Dislike post failed ', error);
             });
     };
 });

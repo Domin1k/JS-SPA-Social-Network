@@ -1,6 +1,6 @@
 'use strict';
 
-socialNetwork.controller('userAuthenticationController', function ($scope, $location, $http, $route, authorizationService) {
+socialNetwork.controller('userAuthenticationController', function ($scope, $location, $http, $route, authorizationService, notifyService) {
 
     // Authorization token
     $http.defaults.headers.common['Authorization'] = sessionStorage['access_token'];
@@ -14,8 +14,9 @@ socialNetwork.controller('userAuthenticationController', function ($scope, $loca
             .then(function (data) {
                 authorizationService.setUserCredentials(data);
                 $location.path('/users/feeds');
+                notifyService.showInfo('Login successfully');
             }, function (error) {
-                console.log(error);
+                notifyService.showError('Login failed ', error);
             });
     };
 
@@ -25,7 +26,7 @@ socialNetwork.controller('userAuthenticationController', function ($scope, $loca
                 authorizationService.setUserCredentials(data);
                 $location.path('/users/feeds');
             }, function (error) {
-                console.log(error);
+                notifyService.showError('Register failed ', error);
             });
     };
 
@@ -36,10 +37,11 @@ socialNetwork.controller('userAuthenticationController', function ($scope, $loca
                 authorizationService.clearUserCredentials();
                 authorizationService.clearUserTemporaryData();
                 sessionStorage.clear();
-                $route.reload();
                 $location.path('/');
+                window.location.reload();
+                notifyService.showInfo('Successfully logged out!');
             }, function (err) {
-                console.log(err);
+                notifyService.showError('Logout failed ', error);
             })
     };
 });

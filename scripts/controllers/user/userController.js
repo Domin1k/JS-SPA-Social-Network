@@ -5,7 +5,8 @@ Array.prototype.pushArray = function(arr) {
 
 socialNetwork.controller('userController', function ($scope, $location, $http, $rootScope, $route,
                                                      $routeParams, $interval, authorizationService,
-                                                     userService, postService, commentService, PAGE_SIZE) {
+                                                     userService, postService, commentService, notifyService,
+                                                     PAGE_SIZE) {
 
     // Authorization token
     $http.defaults.headers.common['Authorization'] = sessionStorage['access_token'];
@@ -37,7 +38,7 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
                             sessionStorage['currentUserprofilepic'] = data.profileImageData;
                         }
                     }, function (error) {
-                        console.log(error);
+                        notifyService.showError('Connection error  ', error);
                     });
             }
         }
@@ -61,7 +62,7 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
                 .then(function (data) {
                     $scope.profileData = data;
                 }, function (err) {
-                    console.log(err);
+                    notifyService.showError('Connection error ', err);
                 });
         }
     };
@@ -79,7 +80,7 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
             };
             fileReader.readAsDataURL(files[0]);
         } else {
-            // Not supported
+            notifyService.showError('File not supported! ');
         }
     };
 
@@ -90,19 +91,19 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
                 $location.path(Paths.feedPath);
                 $route.reload();
                 authorizationService.clearUserTemporaryData();
+                notifyService.showInfo(data.message);
             }, function (error) {
-                console.log(error);
+                notifyService.showError('Edit profile failed ', error);
             })
     };
     
     $scope.changePassword = function (userData) {
         userService.changeUserPassword(userData)
             .then(function (data) {
-                console.log(data);
                 $location.path(Paths.feedPath);
-                $route.reload();
+                notifyService.showInfo(data.message);
             }, function (error) {
-                console.log(error);
+                notifyService.showError('Change password failed ', error);
             })
     };
 
@@ -113,7 +114,7 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
                     $scope.isCurrentUserFriend = userFullData.isFriend;
                     $scope.userWallData = userFullData;
                 }, function (error) {
-                    console.log(error);
+                    notifyService.showError('Connection to database error. Please try again. ');
                 });
         }
     };
@@ -124,7 +125,7 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
                 .then(function (friendsFriendsData) {
                     $scope.friendsFriends = friendsFriendsData.friends;
                 }, function (error) {
-                    console.log(error);
+                    notifyService.showError('Friend Connection to database error. Please try again. ');
                 });
         }
     };
@@ -135,7 +136,7 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
                 .then(function (data) {
                    $scope.hasPendingFriendRequest = data.hasPendingRequest;
                 }, function (error) {
-                    console.log(error);
+                    notifyService.showError('Connection to database error. Please try again. ');
                 });
         }
     };
@@ -148,11 +149,10 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
         if ($scope.hasPendingFriendRequest) {
             userService.getFriendRequests()
                 .then(function (data) {
-                    console.log(data);
                     $scope.pendingFriendRequestData = data;
                     $scope.isPendingRequestHovered = true;
                 }, function (error) {
-                    console.log(error);
+                    notifyService.showError('Connection to database error. Please try again. ');
                 })
         }
     };
@@ -161,8 +161,9 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
         userService.approveFriendRequest(request.id)
             .then(function (data) {
                 $route.reload();
+                notifyService.showInfo('Successfully accepted friend request!');
             }, function (error) {
-                console.log(error);
+                notifyService.showError('Failed to accept friend. Please try again. ');
             });
     };
 
@@ -170,17 +171,18 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
         userService.declineFriendRequest(request.id)
             .then(function (data) {
                 $route.reload();
+                notifyService.showInfo('Successfully declined friend request!');
             }, function (error) {
-                console.log(error);
+                notifyService.showError('Failed to decline friend request. Please try again. ');
             });
     };
 
     $scope.sendFriendRequest = function (request) {
         userService.sendFriendRequest(request.username)
             .then(function (data) {
-                console.log(data);
+                notifyService.showInfo(data.message);
             }, function (error) {
-                console.log(error); 
+                notifyService.showError('Failed to send friend request. Please try again. ');
             });
     };
     
@@ -189,18 +191,16 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
             if (pageSize) {
                 authorizationService.getUserWallFeed(username, pageSize)
                     .then(function (wallFeedData) {
-                        console.log(wallFeedData);
                         $scope.wallFeeds = wallFeedData;
                     }, function (error) {
-                        console.log(error);
+                        notifyService.showError('Connection to database error. Please try again. ');
                     });
             }else {
                 authorizationService.getUserWallFeed(username)
                     .then(function (wallFeedData) {
-                        console.log(wallFeedData);
                         $scope.wallFeeds = wallFeedData;
                     }, function (error) {
-                        console.log(error);
+                        notifyService.showError('Connection to database error. Please try again. ');
                     });
             }
         }
@@ -209,21 +209,20 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
     $scope.searchByUsersFullName = function (substringOfFullname) {
         authorizationService.searchUsersByName(substringOfFullname)
             .then(function (userNamesData) {
-                console.log(userNamesData);
                 $scope.userNames = userNamesData;
             }, function (error) {
-                console.log(error);
+                notifyService.showError('Connection to database error. Please try again. ');
             })
     };
 
     $scope.addCommentToPost = function (feed, commentContent) {
         commentService.addCommentToPost(feed, commentContent)
             .then(function (data) {
-                console.log(data);
                 $('#inputLarge').val('');
                 feed.comments.unshift(data);
+                notifyService.showInfo('Successfully added comment to post!');
             }, function (error) {
-                console.log(error);
+                notifyService.showError('Failed to add comment. Please try again. ');
             });
     };
     
@@ -233,7 +232,7 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
             .then(function (allCommentsForPostData) {
                 $scope.allCommentsForPost = allCommentsForPostData;
             }, function (error) {
-                console.log(error);
+                notifyService.showError('Connection to database error. Please try again. ');
             })
     };
 
@@ -242,8 +241,9 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
             .then(function (data) {
                 comment.liked = data.liked;
                 comment.likesCount = data.likesCount;
+                notifyService.showInfo('Successfully liked comment!');
             }, function (error) {
-                console.log(error);
+                notifyService.showError('Failed to like comment. Please try again. ');
             });
     };
 
@@ -252,8 +252,9 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
             .then(function (data) {
                 comment.liked = data.liked;
                 comment.likesCount = data.likesCount;
+                notifyService.showInfo('Successfully liked comment!');
             }, function (error) {
-                console.log(error);
+                notifyService.showError('Failed to dislike comment. Please try again. ');
             });
     };
 
@@ -264,7 +265,7 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
                 $scope.isUserHovered = true;
                 $scope.hoveredPostId = feed.id;
             }, function (error) {
-                console.log(error);
+                notifyService.showError('Connection error. Please reload the page and check your internet connection');
             })
     };
 
@@ -277,18 +278,16 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
             if (pageSize) {
                 userService.getNewsFeed(pageSize)
                     .then(function (feedsData) {
-                        console.log(feedsData);
                         $scope.newsFeeds = feedsData;
                     }, function (error) {
-                        console.log(error);
+                        notifyService.showError('Feed Connection error. Please reload the page and check your internet connection');
                     });
             }else {
                 userService.getNewsFeed()
                     .then(function (feedsData) {
-                        console.log(feedsData);
                         $scope.newsFeeds = feedsData;
                     }, function (error) {
-                        console.log(error);
+                        notifyService.showError('Feed Connection error. Please reload the page and check your internet connection');
                     });
             }
         }

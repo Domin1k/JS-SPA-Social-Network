@@ -9,8 +9,7 @@ socialNetwork.config(function ($routeProvider) {
 
     $routeProvider.when('/', {
         title: 'Welcome',
-        templateUrl: './templates/public/welcome-view.html',
-        controller: 'welcomeController'
+        templateUrl: './templates/public/welcome-view.html'
     });
 
     $routeProvider.when('/login', {
