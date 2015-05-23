@@ -7,7 +7,7 @@
         <div class="modal-dialog" ng-repeat="feed in newsFeeds">
             <div class="modal-content" data-id="{{feed.id}}">
                 <div class="modal-header">
-                    <button ng-if="feed.author.username === currentUsername" ng-controller="postController" type="button" ng-click="deleteFeedPost(feed)" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                    <button ng-if="feed.author.username === currentUsername || feed.wallOwner.username === currentUsername" ng-controller="postController" type="button" ng-click="deleteFeedPost(feed)" class="close" data-dismiss="modal" aria-hidden="true">x</button>
                     <a href="" class="thumbnail pull-left">
                         <img alt="img" actual-src="{{feed.author.profileImageData}}" ng-src="./img/testP.jpg"/>
                     </a>
@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <div class="pull-left">
+                    <div ng-if="feed.author.isFriend || feed.author.username == currentUsername" class="pull-left">
                         <button ng-controller="postController" type="button" ng-if="feed.liked != true" ng-click="likePost(feed)" class="btn btn-sm btn-success btn-vote" data-dismiss="modal">Like
                             <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
                         </button>

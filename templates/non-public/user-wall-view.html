@@ -17,7 +17,7 @@
         <div class="modal-dialog" ng-repeat="feed in wallFeeds">
             <div class="modal-content" data-id="{{feed.id}}">
                 <div class="modal-header">
-                    <button ng-if="feed.author.username === currentUsername" ng-controller="postController" type="button" ng-click="deletePost(feed)" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                    <button ng-if="feed.author.username === currentUsername || feed.wallOwner.username === currentUsername" ng-controller="postController" type="button" ng-click="deletePost(feed)" class="close" data-dismiss="modal" aria-hidden="true">x</button>
                     <a href="" class="thumbnail pull-left">
                         <img alt="img" actual-src="{{feed.author.profileImageData}}" ng-src="./img/testP.jpg"/>
                     </a>
