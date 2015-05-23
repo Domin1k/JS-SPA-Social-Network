@@ -16,9 +16,17 @@ footer {
     height: 100%;
 }
 
+.sign-btn-container {
+    margin-top: 8%;
+    margin-right: 12%;
+}
+
 .welcomeText {
     text-align: center;
     color: white;
+    font-size: 5.5rem;
+    margin-top: 6%;
+    margin-bottom: 6%;
 }
 
 .login-panel {
@@ -389,3 +397,36 @@ h1#navbar {
     max-width: 80%;
 }
 /*Selected user preview data*/
+
+
+
+
+
+
+
+/* Styles go here */
+
+.my-controller {
+    border: 1px solid #fcc;
+    padding: 5px;
+    margin: 3px;
+}
+.my-controller small {
+    color: #c99;
+}
+.other-controller {
+    border: 1px solid #ccf;
+    padding: 5px;
+    margin: 3px;
+}
+.other-controller small {
+    color: #99c;
+}
+.third-controller {
+    border: 1px solid #cfc;
+    padding: 5px;
+    margin: 3px;
+}
+.third-controller small {
+    color: #9c9;
+}

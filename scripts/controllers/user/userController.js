@@ -6,8 +6,10 @@ Array.prototype.pushArray = function(arr) {
 socialNetwork.controller('userController', function ($scope, $location, $http, $rootScope, $route,
                                                      $routeParams, $interval, authorizationService,
                                                      userService, postService, commentService) {
+
     // Authorization token
     $http.defaults.headers.common['Authorization'] = sessionStorage['access_token'];
+
 
     var Paths = {
         feedPath : '/users/feeds',
@@ -257,7 +259,7 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
     $scope.stopUserPreview = function () {
         $scope.isUserHovered = false;
     };
-
+    
     $scope.getNewsFeed = function () {
         if ($location.path() === Paths.feedPath && authorizationService.isLoggedIn()) {
             userService.getNewsFeed()
@@ -269,6 +271,7 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
                 });
         }
     };
+
 
     $scope.showEditBox = function (postId) {
         $rootScope.isEditActivated = !$rootScope.isEditActivated;
@@ -301,7 +304,6 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
         $interval(function () {
             if (sessionStorage['access_token']) {
                 $scope.getUserPendingFriendRequests();
-                console.log('c1k');
             }
         }, 5000);
 

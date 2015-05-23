@@ -1,6 +1,6 @@
 'use strict';
 
-socialNetwork.controller('userAuthenticationController', function ($scope, $location, $http, authorizationService) {
+socialNetwork.controller('userAuthenticationController', function ($scope, $location, $http, $route, authorizationService) {
 
     // Authorization token
     $http.defaults.headers.common['Authorization'] = sessionStorage['access_token'];
@@ -36,6 +36,7 @@ socialNetwork.controller('userAuthenticationController', function ($scope, $loca
                 authorizationService.clearUserCredentials();
                 authorizationService.clearUserTemporaryData();
                 sessionStorage.clear();
+                $route.reload();
                 $location.path('/');
             }, function (err) {
                 console.log(err);
