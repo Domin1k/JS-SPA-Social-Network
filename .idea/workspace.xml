@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e812bf9a-0c64-470e-8752-5249dd29130c" name="Default" comment="Change password implemented">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/public/login-view.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/public/register-view.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/public/welcome-view.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/app.css" afterPath="$PROJECT_DIR$/css/app.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/non-public/newsFeed-view.html" afterPath="$PROJECT_DIR$/templates/non-public/newsFeed-view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/controllers/user/userAuthenticationController.js" afterPath="$PROJECT_DIR$/scripts/controllers/user/userAuthenticationController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/controllers/user/userController.js" afterPath="$PROJECT_DIR$/scripts/controllers/user/userController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/services/userService.js" afterPath="$PROJECT_DIR$/scripts/services/userService.js" />
-    </list>
+    <list default="true" id="e812bf9a-0c64-470e-8752-5249dd29130c" name="Default" comment="Change password implemented" />
     <ignored path="Social-Network.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -75,8 +64,8 @@
       <file leaf-file-name="welcome-view.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/public/welcome-view.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.51705563">
-              <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.54937166">
+              <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -228,24 +217,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Social-Network" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Social-Network" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Social-Network" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -505,7 +476,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19196428" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1000,8 +971,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/public/welcome-view.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.51705563">
-          <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.54937166">
+          <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
           <folding />
         </state>
       </provider>
