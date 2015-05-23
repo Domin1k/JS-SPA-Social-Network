@@ -5,11 +5,13 @@ Array.prototype.pushArray = function(arr) {
 
 socialNetwork.controller('userController', function ($scope, $location, $http, $rootScope, $route,
                                                      $routeParams, $interval, authorizationService,
-                                                     userService, postService, commentService) {
+                                                     userService, postService, commentService, PAGE_SIZE) {
 
     // Authorization token
     $http.defaults.headers.common['Authorization'] = sessionStorage['access_token'];
 
+    $scope.feedPageSize = PAGE_SIZE;
+    $scope.wallPageSize = PAGE_SIZE;
 
     var Paths = {
         feedPath : '/users/feeds',
@@ -182,15 +184,25 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
             });
     };
     
-    $scope.getWallsPost = function (username) {
+    $scope.getWallsPost = function (username, pageSize) {
         if (username) {
-            authorizationService.getUserWallFeed(username)
-                .then(function (wallFeedData) {
-                    console.log(wallFeedData);
-                    $scope.wallFeeds = wallFeedData;
-                }, function (error) {
-                    console.log(error);
-                });
+            if (pageSize) {
+                authorizationService.getUserWallFeed(username, pageSize)
+                    .then(function (wallFeedData) {
+                        console.log(wallFeedData);
+                        $scope.wallFeeds = wallFeedData;
+                    }, function (error) {
+                        console.log(error);
+                    });
+            }else {
+                authorizationService.getUserWallFeed(username)
+                    .then(function (wallFeedData) {
+                        console.log(wallFeedData);
+                        $scope.wallFeeds = wallFeedData;
+                    }, function (error) {
+                        console.log(error);
+                    });
+            }
         }
     };
 
@@ -260,18 +272,37 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
         $scope.isUserHovered = false;
     };
     
-    $scope.getNewsFeed = function () {
+    $scope.getNewsFeed = function (pageSize) {
         if ($location.path() === Paths.feedPath && authorizationService.isLoggedIn()) {
-            userService.getNewsFeed()
-                .then(function (feedsData) {
-                    console.log(feedsData);
-                    $scope.newsFeeds = feedsData;
-                }, function (error) {
-                    console.log(error);
-                });
+            if (pageSize) {
+                userService.getNewsFeed(pageSize)
+                    .then(function (feedsData) {
+                        console.log(feedsData);
+                        $scope.newsFeeds = feedsData;
+                    }, function (error) {
+                        console.log(error);
+                    });
+            }else {
+                userService.getNewsFeed()
+                    .then(function (feedsData) {
+                        console.log(feedsData);
+                        $scope.newsFeeds = feedsData;
+                    }, function (error) {
+                        console.log(error);
+                    });
+            }
         }
     };
 
+    $scope.showMore = function () {
+        $scope.feedPageSize = $scope.feedPageSize * 2;
+        $scope.getNewsFeed($scope.feedPageSize);
+    };
+
+    $scope.showMoreFeedsOnWall = function () {
+        $scope.wallPageSize = $scope.wallPageSize * 2;
+        $scope.getWallsPost($routeParams.username, $scope.wallPageSize);
+    };
 
     $scope.showEditBox = function (postId) {
         $rootScope.isEditActivated = !$rootScope.isEditActivated;

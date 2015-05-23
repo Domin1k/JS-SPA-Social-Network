@@ -1,6 +1,6 @@
 'use strict';
 
-socialNetwork.factory('authorizationService', function (BASE_URL, mainRequesterService) {
+socialNetwork.factory('authorizationService', function (BASE_URL, PAGE_SIZE, mainRequesterService) {
     var serviceUrl = BASE_URL + '/users';
     var serviceRequester = {};
 
@@ -49,8 +49,14 @@ socialNetwork.factory('authorizationService', function (BASE_URL, mainRequesterS
         sessionStorage['access_token'] = 'bearer ' + userCredentials.access_token;
     };
 
-    serviceRequester.getUserWallFeed = function (username) {
-        var url = serviceUrl + '/' + username + '/wall?StartPostId=&PageSize=5';
+    serviceRequester.getUserWallFeed = function (username, pageSize) {
+        var url;
+        if (pageSize) {
+            url = serviceUrl + '/' + username + '/wall?StartPostId=&PageSize='+pageSize;
+        }else {
+            url = serviceUrl + '/' + username + '/wall?StartPostId=&PageSize='+PAGE_SIZE;
+        }
+
         return mainRequesterService.getRequest(url, {});
     };
 

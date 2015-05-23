@@ -1,6 +1,6 @@
 'use strict';
 
-socialNetwork.factory('userService', function (BASE_URL, mainRequesterService) {
+socialNetwork.factory('userService', function (BASE_URL, PAGE_SIZE, mainRequesterService) {
     var serviceUrl = BASE_URL + '/me';
     var serviceRequester = {};
 
@@ -50,8 +50,14 @@ socialNetwork.factory('userService', function (BASE_URL, mainRequesterService) {
         return mainRequesterService.postRequest(serviceUrl + '/requests/' + username);
     };
     
-    serviceRequester.getNewsFeed = function () {
-        var url = serviceUrl + '/feed?StartPostId=&PageSize=5';
+    serviceRequester.getNewsFeed = function (pageSize) {
+        var url;
+        if (pageSize) {
+            url = serviceUrl + '/feed?StartPostId=&PageSize='+pageSize;
+        }else {
+            url = serviceUrl + '/feed?StartPostId=&PageSize='+PAGE_SIZE;
+        }
+
         return mainRequesterService.getRequest(url, {});
     };
 
