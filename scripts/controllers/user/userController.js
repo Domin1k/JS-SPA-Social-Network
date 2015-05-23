@@ -292,23 +292,23 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
     };
 
     $scope.showMore = function () {
-        $scope.feedPageSize = $scope.feedPageSize * 2;
-        $scope.getNewsFeed($scope.feedPageSize);
+        $scope.feedPageSize = ($scope.feedPageSize * 2) - 1;
+        $scope.getNewsFeed(Math.ceil($scope.feedPageSize));
     };
 
     $scope.showLess = function () {
         $scope.feedPageSize = $scope.feedPageSize / 2;
-        $scope.getNewsFeed($scope.feedPageSize);
+        $scope.getNewsFeed(Math.ceil($scope.feedPageSize));
     };
 
     $scope.showMoreFeedsOnWall = function () {
-        $scope.wallPageSize = $scope.wallPageSize * 2;
-        $scope.getWallsPost($routeParams.username, $scope.wallPageSize);
+        $scope.wallPageSize = ($scope.wallPageSize * 2) - 1;
+        $scope.getWallsPost($routeParams.username, Math.ceil($scope.wallPageSize));
     };
 
     $scope.showLessFeedsOnWall = function () {
         $scope.wallPageSize = $scope.wallPageSize / 2;
-        $scope.getWallsPost($routeParams.username, $scope.wallPageSize);
+        $scope.getWallsPost($routeParams.username, Math.ceil($scope.wallPageSize));
     };
 
     $scope.showEditBox = function (postId) {

@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e812bf9a-0c64-470e-8752-5249dd29130c" name="Default" comment="Change password implemented">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/app.css" afterPath="$PROJECT_DIR$/css/app.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/non-public/navbar-view.html" afterPath="$PROJECT_DIR$/templates/non-public/navbar-view.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/non-public/newsFeed-view.html" afterPath="$PROJECT_DIR$/templates/non-public/newsFeed-view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/non-public/user-preview-view.html" afterPath="$PROJECT_DIR$/templates/non-public/user-preview-view.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/non-public/user-wall-view.html" afterPath="$PROJECT_DIR$/templates/non-public/user-wall-view.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/controllers/user/userController.js" afterPath="$PROJECT_DIR$/scripts/controllers/user/userController.js" />
     </list>
     <ignored path="Social-Network.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,7 +29,7 @@
         <entry file="file://$PROJECT_DIR$/scripts/controllers/user/userController.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="326" column="99" selection-start-line="326" selection-start-column="99" selection-end-line="326" selection-end-column="99" />
+              <caret line="304" column="27" selection-start-line="304" selection-start-column="15" selection-end-line="304" selection-end-column="27" />
               <folding>
                 <element signature="e#3809#4127#0" expanded="false" />
                 <element signature="e#4667#5094#0" expanded="false" />
@@ -41,10 +39,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/app.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3009009">
+            <state vertical-scroll-proportion="-5.7586207">
               <caret line="333" column="19" selection-start-line="333" selection-start-column="19" selection-end-line="333" selection-end-column="19" />
               <folding>
                 <element signature="e#2190#2460#0" expanded="false" />
@@ -66,18 +64,18 @@
       <file leaf-file-name="newsFeed-view.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/non-public/newsFeed-view.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.230769">
-              <caret line="8" column="52" selection-start-line="8" selection-start-column="52" selection-end-line="8" selection-end-column="52" />
+            <state vertical-scroll-proportion="-13.615385">
+              <caret line="81" column="43" selection-start-line="81" selection-start-column="19" selection-end-line="81" selection-end-column="43" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user-wall-view.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="user-wall-view.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/non-public/user-wall-view.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.0">
-              <caret line="6" column="52" selection-start-line="6" selection-start-column="52" selection-end-line="6" selection-end-column="52" />
+            <state vertical-scroll-proportion="0.35547575">
+              <caret line="11" column="14" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -183,16 +181,16 @@
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/scripts/services/commentService.js" />
         <option value="$PROJECT_DIR$/scripts/controllers/commentController.js" />
-        <option value="$PROJECT_DIR$/scripts/controllers/user/userController.js" />
         <option value="$PROJECT_DIR$/scripts/controllers/feedsController.js" />
         <option value="$PROJECT_DIR$/scripts/controllers/user/userAuthenticationController.js" />
         <option value="$PROJECT_DIR$/templates/non-public/user-profile-view.html" />
         <option value="$PROJECT_DIR$/templates/non-public/user-friendslist-view.html" />
-        <option value="$PROJECT_DIR$/templates/non-public/newsFeed-view.html" />
         <option value="$PROJECT_DIR$/templates/non-public/user-preview-view.html" />
         <option value="$PROJECT_DIR$/templates/non-public/navbar-view.html" />
-        <option value="$PROJECT_DIR$/templates/non-public/user-wall-view.html" />
         <option value="$PROJECT_DIR$/css/app.css" />
+        <option value="$PROJECT_DIR$/templates/non-public/newsFeed-view.html" />
+        <option value="$PROJECT_DIR$/scripts/controllers/user/userController.js" />
+        <option value="$PROJECT_DIR$/templates/non-public/user-wall-view.html" />
       </list>
     </option>
   </component>
@@ -619,8 +617,8 @@
             <element signature="e#10334#10781#0" expanded="false" />
             <element signature="e#10825#10870#0" expanded="false" />
             <element signature="e#10922#11785#0" expanded="false" />
-            <element signature="e#11822#11933#0" expanded="false" />
-            <element signature="e#12650#13108#0" expanded="false" />
+            <element signature="e#11822#11950#0" expanded="false" />
+            <element signature="e#12706#13164#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -707,8 +705,8 @@
             <element signature="e#10334#10781#0" expanded="false" />
             <element signature="e#10825#10870#0" expanded="false" />
             <element signature="e#10922#11785#0" expanded="false" />
-            <element signature="e#11822#11933#0" expanded="false" />
-            <element signature="e#12650#13108#0" expanded="false" />
+            <element signature="e#11822#11950#0" expanded="false" />
+            <element signature="e#12706#13164#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -882,18 +880,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/controllers/user/userController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="326" column="99" selection-start-line="326" selection-start-column="99" selection-end-line="326" selection-end-column="99" />
-          <folding>
-            <element signature="e#3809#4127#0" expanded="false" />
-            <element signature="e#4667#5094#0" expanded="false" />
-            <element signature="e#6171#6519#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/controllers/feedsController.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -942,14 +928,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/non-public/newsFeed-view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.230769">
-          <caret line="8" column="52" selection-start-line="8" selection-start-column="52" selection-end-line="8" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/non-public/user-preview-view.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.6666667">
@@ -966,11 +944,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/non-public/user-wall-view.html">
+    <entry file="file://$PROJECT_DIR$/css/app.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.0">
-          <caret line="6" column="52" selection-start-line="6" selection-start-column="52" selection-end-line="6" selection-end-column="52" />
-          <folding />
+        <state vertical-scroll-proportion="-5.7586207">
+          <caret line="333" column="19" selection-start-line="333" selection-start-column="19" selection-end-line="333" selection-end-column="19" />
+          <folding>
+            <element signature="e#2190#2460#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/controllers/user/userController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="304" column="27" selection-start-line="304" selection-start-column="15" selection-end-line="304" selection-end-column="27" />
+          <folding>
+            <element signature="e#3809#4127#0" expanded="false" />
+            <element signature="e#4667#5094#0" expanded="false" />
+            <element signature="e#6171#6519#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -982,13 +974,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/app.css">
+    <entry file="file://$PROJECT_DIR$/templates/non-public/newsFeed-view.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3009009">
-          <caret line="333" column="19" selection-start-line="333" selection-start-column="19" selection-end-line="333" selection-end-column="19" />
-          <folding>
-            <element signature="e#2190#2460#0" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="-13.615385">
+          <caret line="81" column="43" selection-start-line="81" selection-start-column="19" selection-end-line="81" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/non-public/user-wall-view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35547575">
+          <caret line="11" column="14" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>

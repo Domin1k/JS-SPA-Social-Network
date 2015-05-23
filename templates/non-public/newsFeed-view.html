@@ -47,7 +47,7 @@
                             </span>
                         </div>
                         <span class="badge">{{feed.comments.length}}</span>
-                        <button ng-disabled="commentForm.$invalid" ng-click="addCommentToPost(feed, commentRawContent)" type="button" id="{{feed.id}}" class="btn btn-primary" >Comment
+                        <button ng-if="feed.author.isFriend || feed.wallOwner.isFriend" ng-disabled="commentForm.$invalid" ng-click="addCommentToPost(feed, commentRawContent)" type="button" id="{{feed.id}}" class="btn btn-primary" >Comment
                             <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
                         </button>
                     </form>
@@ -79,7 +79,7 @@
             </div>
         </div>
         <a href="" ng-click="showMore()" class="btn btn-danger pull-right">Show more feeds</a>
-        <a href="" ng-click="showLess()" class="btn btn-danger pull-right">Show more feeds</a>
+        <a href="" ng-if="feedPageSize > 2" ng-click="showLess()" class="btn btn-danger pull-right">Show less feeds</a>
     </div>
     <div class="col-md-4">
         <div ng-include="'templates/non-public/friends-panel-view.html'"></div>
