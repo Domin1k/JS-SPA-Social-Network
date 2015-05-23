@@ -35,10 +35,10 @@ socialNetwork.controller('userAuthenticationController', function ($scope, $loca
                 console.log(data);
                 authorizationService.clearUserCredentials();
                 authorizationService.clearUserTemporaryData();
+                sessionStorage.clear();
                 $location.path('/');
             }, function (err) {
                 console.log(err);
             })
     };
-
 });

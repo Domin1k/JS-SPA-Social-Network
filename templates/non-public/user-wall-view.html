@@ -86,6 +86,7 @@
                         </div>
                     </div>
                 </div>
+                <a href="" ng-if="feed.id != postId" ng-click="showAllComments(feed)" class="btn btn-primary display-all-comments">See all</a>
             </div>
         </div>
     </div>
@@ -102,5 +103,6 @@
             <button ng-controller="postController" ng-click="addWallPost(post)" ng-disabled="feedForm.$invalid" class="btn btn-success btn-post-feed">Post</button>
         </form>
         <div ng-include="'templates/non-public/friends-friendsPreview-view.html'"></div>
+        <div ng-controller="feedsController" ng-if="wallFeeds[0].wallOwner.username == currentUsername" ng-include="'templates/non-public/friends-panel-view.html'"></div>
     </div>
 </div>

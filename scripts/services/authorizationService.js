@@ -84,7 +84,11 @@ socialNetwork.factory('authorizationService', function (BASE_URL, mainRequesterS
     };
 
     serviceRequester.isLoggedIn = function () {
-        return !!sessionStorage.getItem('access_token');
+        if (sessionStorage['access_token']) {
+            return true;
+        }
+
+        return false;
     };
 
     return serviceRequester;

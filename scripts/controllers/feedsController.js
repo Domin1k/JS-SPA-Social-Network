@@ -8,12 +8,14 @@ socialNetwork.controller('feedsController', function ($scope, $http, $location, 
         feedPath : '/users/feeds',
         wallPath : '/users/wall/',
         profilePath : '/users/profile',
-        friendsList: '/users/friendslist'
+        friendsList: '/users/friendslist',
+        myWall: '/users/wall/'+$scope.currentUsername
     };
 
     $scope.getMyFriends = function () {
         if ($location.path() === Paths.feedPath ||
-            $location.path() === Paths.friendsList) {
+            $location.path() === Paths.friendsList ||
+            $location.path() === Paths.myWall) {
             userService.getOwnFriends()
                 .then(function (allFriendsData) {
                     $scope.ownFriendsCollection = allFriendsData;

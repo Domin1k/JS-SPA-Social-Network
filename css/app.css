@@ -345,6 +345,14 @@ h1#navbar {
 .container-comment-votes {
     overflow: hidden;
 }
+
+.display-all-comments {
+    margin: 2%;
+}
+.display-all-comments:hover {
+    background-image: linear-gradient(#04519b, #033c73 60%, #02325f);
+    border-color: #011d37;
+}
 /*Comment box*/
 
 /*Friend pending request*/

@@ -1,4 +1,7 @@
 'use strict';
+Array.prototype.pushArray = function(arr) {
+    this.push.apply(this, arr);
+};
 
 socialNetwork.controller('userController', function ($scope, $location, $http, $rootScope, $route,
                                                      $routeParams, $interval, authorizationService,
@@ -268,8 +271,20 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
         $scope.editPostId = postId;
     };
 
+    $scope.showAllComments = function (post) {
+        commentService.getPostComments(post.id)
+            .then(function (allPostsData) {
+                var newPostsArray = allPostsData.slice(3);
+                post.comments.pushArray(newPostsArray);
+                $scope.areAllCommentsShown = true;
+                $scope.postId = post.id;
+            }, function (error) {
+                console.log(error);
+            })
+    };
+
     // Function calls
-    if (authorizationService.isLoggedIn()) {
+    if (sessionStorage['access_token']) {
         if (sessionStorage['username'] !== $routeParams.username) {
             $scope.getFriendsFriendsPreview($routeParams.username);
         }
@@ -280,9 +295,13 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
         $scope.getUserWall($routeParams.username);
         $scope.getWallsPost($routeParams.username);
         $interval(function () {
-            $scope.getUserPendingFriendRequests();
+            if (sessionStorage['access_token']) {
+                $scope.getUserPendingFriendRequests();
+                console.log('c1k');
+            }
         }, 5000);
 
         // Add page auto-refresh
     }
+
 });
