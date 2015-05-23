@@ -161,6 +161,12 @@ h1#navbar {
 /*User Profile*/
 
 /*Feeds - Friend panel*/
+.friends-panel-thumb {
+    display: inline-block;
+    height: 150px;
+    max-height: 150px;
+}
+
 .friendsPanel {
     margin-top: 8%;
 }
