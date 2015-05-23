@@ -50,7 +50,6 @@
                             <form class="navbar-form navbar-left" name="searchUsersForm" role="search">
                                 <div class="form-group">
                                     <input type="text" name="usersSearchBox" ng-model="searchCriteria" ng-change="searchByUsersFullName(searchCriteria)" class="form-control navi-search"  placeholder="Search">
-                                    <a href="" class="btn btn-default navi-searchImg"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
                                     <div ng-if="searchCriteria.length" ng-include="'templates/non-public/user-search-view.html'"></div>
                                 </div>
                             </form>

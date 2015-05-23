@@ -24,10 +24,14 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
                 authorizationService.getUserPreviewData()
                     .then(function (data) {
                         $scope.currentUsername = data.username;
-                        $scope.currentUserprofilepic = data.profileImageData;
+                        if (data.profileImageData !== null) {
+                            $scope.currentUserprofilepic = data.profileImageData;
+                        }
                         $scope.hasPendingFriendRequest = data.hasPendingRequest;
                         sessionStorage['currentUsername'] = data.username;
-                        sessionStorage['currentUserprofilepic'] = data.profileImageData;
+                        if (data.profileImageData !== null) {
+                            sessionStorage['currentUserprofilepic'] = data.profileImageData;
+                        }
                     }, function (error) {
                         console.log(error);
                     });
