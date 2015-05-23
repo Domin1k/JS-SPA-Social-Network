@@ -56,3 +56,17 @@ socialNetwork.config(function ($routeProvider) {
 
     $routeProvider.otherwise({redirectTo: '/'});
 });
+
+socialNetwork.run(function ($rootScope, $location, authorizationService) {
+    $rootScope.$on('$locationChangeStart', function (event) {
+        // Authorization check: anonymous site visitors cannot access user routes
+        if ($location.path().indexOf("/users/") != -1 && !authorizationService.isLoggedIn()) {
+            $location.path("/login");
+        }
+        // Authorization check: logged users cannot access login/register routes
+        if ($location.path().indexOf("/users") == -1 && authorizationService.isLoggedIn()) {
+
+            $location.path("/users/feeds");
+        }
+    });
+});
