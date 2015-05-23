@@ -62,6 +62,8 @@
                     </form>
                 </div>
                 <div class="panel panel-default post-comments-container" ng-repeat="comment in feed.comments">
+                    <button ng-controller="commentController" ng-if="comment.author.username === currentUsername || feed.wallOwner.username === currentUsername"
+                            type="button" ng-click="deleteComment(feed, comment)" class="close" data-dismiss="modal" aria-hidden="true">x</button>
                     <div class="panel-heading">
                         <img actual-src="{{comment.author.profileImageData}}" ng-src="./img/testP.jpg" class="img-thumbnail comment-user-image" alt="image"/>
                         <span class="panel-title"><strong ng-click="goToUserWall(comment.author.username)" ng-mouseenter="previewUser(comment)" class="username">{{comment.author.name}}</strong>

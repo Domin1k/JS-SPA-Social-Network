@@ -358,6 +358,8 @@ h1#navbar {
 
 .container-comment-votes {
     overflow: hidden;
+    margin-right: 2%;
+    margin-bottom: 2%;
 }
 
 .display-all-comments {

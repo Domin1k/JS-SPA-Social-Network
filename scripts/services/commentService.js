@@ -27,5 +27,11 @@ socialNetwork.factory('commentService', function (BASE_URL, mainRequesterService
         return mainRequesterService.deleteRequest(url, {});
     };
 
+    serviceRequester.deleteComment = function (postId, commentId) {
+        var url = serviceUrl + postId + '/comments/' + commentId;
+
+        return mainRequesterService.deleteRequest(url, {});
+    };
+
     return serviceRequester;    
 });
