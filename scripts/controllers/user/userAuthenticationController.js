@@ -33,7 +33,6 @@ socialNetwork.controller('userAuthenticationController', function ($scope, $loca
     $scope.logoutUser = function () {
         authorizationService.logout()
             .then(function (data) {
-                console.log(data);
                 authorizationService.clearUserCredentials();
                 authorizationService.clearUserTemporaryData();
                 sessionStorage.clear();

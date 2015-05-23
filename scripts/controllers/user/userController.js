@@ -87,7 +87,6 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
     $scope.editUserProfile = function (profileData) {
         userService.editProfile(profileData)
             .then(function (data) {
-                console.log(data);
                 $location.path(Paths.feedPath);
                 $route.reload();
                 authorizationService.clearUserTemporaryData();
@@ -227,7 +226,6 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
     };
     
     $scope.getCommentsByPostId = function (postId) {
-        console.log(postId);
         commentService.getPostComments(postId)
             .then(function (allCommentsForPostData) {
                 $scope.allCommentsForPost = allCommentsForPostData;
@@ -298,8 +296,18 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
         $scope.getNewsFeed($scope.feedPageSize);
     };
 
+    $scope.showLess = function () {
+        $scope.feedPageSize = $scope.feedPageSize / 2;
+        $scope.getNewsFeed($scope.feedPageSize);
+    };
+
     $scope.showMoreFeedsOnWall = function () {
         $scope.wallPageSize = $scope.wallPageSize * 2;
+        $scope.getWallsPost($routeParams.username, $scope.wallPageSize);
+    };
+
+    $scope.showLessFeedsOnWall = function () {
+        $scope.wallPageSize = $scope.wallPageSize / 2;
         $scope.getWallsPost($routeParams.username, $scope.wallPageSize);
     };
 
@@ -316,7 +324,7 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
                 $scope.areAllCommentsShown = true;
                 $scope.postId = post.id;
             }, function (error) {
-                console.log(error);
+                notifyService.showError('Connection to the database failed. Please try again later.');
             })
     };
 

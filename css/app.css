@@ -308,7 +308,12 @@ h1#navbar {
     line-height: 1.1;
     color: #317eac;
 }
-
+.container-friends-images {
+    width: 100px;
+    height: 100px;
+    max-width: 100px;
+    max-height: 100px;
+}
 /*Friends list*/
 /*Search users*/
 .dropdown-users {

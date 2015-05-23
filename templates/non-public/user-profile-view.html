@@ -17,19 +17,23 @@
                 </div>
             </div>
             <div class="col-md-9">
-                <form class="form-horizontal">
+                <form class="form-horizontal" name="profileForm">
                     <fieldset>
                         <legend class="user-legend">Edit profile</legend>
                         <div class="form-group">
                             <label for="inputEditName" class="col-lg-2 control-label">Name</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" ng-model="profileData.name" id="inputEditName" placeholder="Name">
+                                <span class="label label-danger error" ng-show="profileForm.profileUsername.$error.required">Required!</span>
+                                <span class="label label-danger error" ng-show="profileForm.profileUsername.$error.minlength">Min length is 4</span>
+                                <input type="text" name="profileUsername" required ng-minlength="4" class="form-control" ng-model="profileData.name" id="inputEditName" placeholder="Name">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputEditMail" class="col-lg-2 control-label">Email</label>
                             <div class="col-lg-5">
-                                <input type="email" class="form-control" ng-model="profileData.email" id="inputEditMail" placeholder="Email">
+                                <span class="label label-danger error" ng-show="profileForm.profileEmail.$error.required">Required!</span>
+                                <span class="label label-danger error" ng-show="profileForm.profileEmail.$error.minlength">Min length is 6</span>
+                                <input type="email" name="profileEmail" required ng-minlength="6" class="form-control" ng-model="profileData.email" id="inputEditMail" placeholder="Email">
                             </div>
                         </div>
                         <div class="form-group">
@@ -65,7 +69,8 @@
                         </div>
                         <div class="form-group">
                             <div class="col-lg-10 col-lg-offset-2">
-                                <button ng-click="editUserProfile(profileData)" type="submit" class="btn btn-primary">Edit profile</button>
+                                <button ng-disabled="profileForm.$invalid" ng-click="editUserProfile(profileData)" type="submit" class="btn btn-success btn-primary btn-lg">Edit profile</button>
+                                <a href="#/users/feeds" type="submit" class="btn btn-danger btn-primary btn-lg">Cancel</a>
                             </div>
                         </div>
                     </fieldset>

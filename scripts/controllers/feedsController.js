@@ -1,6 +1,6 @@
 'use strict';
 
-socialNetwork.controller('feedsController', function ($scope, $http, $location, $route, userService, authorizationService) {
+socialNetwork.controller('feedsController', function ($scope, $http, $location, $route, userService, authorizationService, notifyService) {
 
     $http.defaults.headers.common['Authorization'] = sessionStorage['access_token'];
 
@@ -20,7 +20,7 @@ socialNetwork.controller('feedsController', function ($scope, $http, $location, 
                 .then(function (allFriendsData) {
                     $scope.ownFriendsCollection = allFriendsData;
                 }, function (error) {
-                    console.log(error);
+                    notifyService.showError('Connection to the database failed. Please try again later.');
                 });
         }
     };
@@ -36,7 +36,7 @@ socialNetwork.controller('feedsController', function ($scope, $http, $location, 
                 $scope.isFriendHovered = true;
                 $scope.hoveredPostId = friend.id;
             }, function (error) {
-                console.log(error);
+                notifyService.showError('Connection to the database failed. Please try again later.');
             })
     };
 
