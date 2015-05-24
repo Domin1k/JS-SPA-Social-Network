@@ -17,7 +17,7 @@
                                 <li>
                                     <p class="bs-component">
                                         <a href="#/users/feeds" class="btn btn-success btn-sm nav-buttons">
-                                            <span class="glyphicon glyphicon-apple" aria-hidden="true"></span>
+                                            <i class="fa fa-comments"></i>
                                         </a>
                                     </p>
                                 </li>
@@ -25,7 +25,7 @@
                                     <p class="bs-component" >
                                         <a href="#/users/friendslist"  ng-mouseenter="getFriendRequests()" id="friendsButton" class="btn btn-success btn-sm nav-buttons">
                                             <span ng-if="hasPendingFriendRequest" class="badge">{{pendingFriendRequestData.length || '!'}}</span>
-                                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                            <i class="fa fa-users"></i>
                                         </a>
                                     </p>
                                     <div ng-mouseleave="hideUserRequestContainer()" ng-if="hasPendingFriendRequest && isPendingRequestHovered" ng-include="'templates/non-public/user-pendingFriend-view.html'"></div>
@@ -33,7 +33,7 @@
                                 <li>
                                     <p class="bs-component">
                                         <a href="#/users/profile" class="btn btn-success btn-sm nav-buttons">
-                                            <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+                                            <i class="fa fa-cogs"></i>
                                         </a>
                                     </p>
                                 </li>

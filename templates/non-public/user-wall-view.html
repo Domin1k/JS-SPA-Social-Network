@@ -4,7 +4,7 @@
         <div class="timeline-container">
             <img actual-src="{{userWallData.coverImageData}}" ng-src="./img/timelineDefault.jpg" alt="timeline" id="wallUser-timeline" class="user-timeline-image"/>
             <img actual-src="{{userWallData.profileImageData}}" ng-src="./img/testP.jpg" alt="profileImage" id="wallUser-picture" class="img-thumbnail user-profile-image"/>
-            <span class="user-wall-fullName username">{{userWallData.name}}</span>
+            <span class="user-wall-fullName username" id="wallUsername">{{userWallData.name}}</span>
             <div class="pull-right" ng-if="userWallData.username != currentUsername">
                 <a href="" class="btn btn-success btn-lg disabled" ng-show="userWallData.isFriend === true">Friend</a>
                 <a href="" ng-click="sendFriendRequest(userWallData)" class="btn btn-danger btn-lg" ng-show="userWallData.isFriend === false">Add friend</a>
@@ -63,11 +63,11 @@
                 </div>
                 <div class="panel panel-default post-comments-container" ng-repeat="comment in feed.comments">
                     <button ng-controller="commentController" ng-if="comment.author.username === currentUsername || feed.wallOwner.username === currentUsername"
-                            type="button" ng-click="deleteComment(feed, comment)" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                            type="button" ng-click="deleteComment(feed, comment)" class="close" id="btn-delete-comment" data-dismiss="modal" aria-hidden="true">x</button>
                     <div class="panel-heading overflowFix">
                         <img actual-src="{{comment.author.profileImageData}}" ng-src="./img/testP.jpg" class="img-thumbnail comment-user-image" alt="image"/>
                         <span class="panel-title"><strong ng-click="goToUserWall(comment.author.username)" ng-mouseenter="previewUser(comment)" class="username">{{comment.author.name}}</strong>
-                            posted at {{comment.date | date: "dd/MM/yy HH:mm:ss"}}
+                            <span class="date">posted at {{comment.date | date: "dd/MM/yy HH:mm:ss"}}</span>
                         </span>
                         <div ng-mouseleave="stopUserPreview()" ng-if="isUserHovered && hoveredPostId == comment.id" ng-include="'templates/non-public/user-preview-view.html'"></div>
                     </div>
@@ -104,7 +104,7 @@
                 </span>
             <textarea name="commentBox" ng-model="post.postContent" minlength="2" required id="feedCommentBox" placeholder="Enter message"></textarea>
 
-            <button ng-controller="postController" ng-click="addWallPost(post)" ng-disabled="feedForm.$invalid" class="btn btn-success btn-post-feed">Post</button>
+            <button ng-controller="postController" ng-click="addWallPost(post)" ng-disabled="feedForm.$invalid" class="btn btn-success btn-post-feed">Post <i class="fa fa-comment"></i></button>
         </form>
         <div ng-include="'templates/non-public/friends-friendsPreview-view.html'"></div>
         <div ng-controller="feedsController" ng-if="wallFeeds[0].wallOwner.username == currentUsername" ng-include="'templates/non-public/friends-panel-view.html'"></div>
