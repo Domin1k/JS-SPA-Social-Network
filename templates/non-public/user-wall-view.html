@@ -50,9 +50,12 @@
                     <form ng-if="feed.wallOwner.isFriend || feed.wallOwner.username == currentUsername" name="commentForm">
                     <div class="form-group comment-box">
                         <label class="control-label pull-left" for="inputLarge">Post your comment</label>
-                        <input name="commentField" ng-minlength="2" required ng-model="commentRawContent" class="form-control input-lg" type="text" id="inputLarge">
+                        <input name="commentField" ng-minlength="2" ng-maxlength="255" required ng-model="commentRawContent" class="form-control input-lg" type="text" id="inputLarge">
                         <span class="label label-danger error" ng-show="commentForm.commentField.$error.minlength">
                                 Min length is 2 letters!
+                        </span>
+                        <span class="label label-danger error" ng-show="commentForm.commentField.$error.maxlength">
+                                    Min length is 255 letters!
                         </span>
                     </div>
                     <span class="badge">total comments {{feed.comments.length}}</span>
@@ -91,8 +94,8 @@
                 <a href="" ng-if="feed.id != postId" ng-click="showAllComments(feed)" class="btn btn-primary display-all-comments">See all</a>
             </div>
         </div>
-        <a href="" ng-click="showMoreFeedsOnWall()" class="btn btn-info pull-right">Show more feeds</a>
-        <a href="" ng-if="wallPageSize > 2" ng-click="showLessFeedsOnWall()" class="btn btn-danger pull-right">Show less feeds</a>
+        <a href="" ng-click="showMoreFeedsOnWall()" class="btn btn-info pull-right">Show more feeds <i class="fa fa-level-down"></i></a>
+        <a href="" ng-if="wallPageSize > 2" ng-click="showLessFeedsOnWall()" class="btn btn-danger pull-right">Show less feeds <i class="fa fa-level-up"></i></a>
     </div>
     <div class="col-md-4 postBoxContainer">
         <form ng-if="wallFeeds[0].wallOwner.isFriend || wallFeeds[0].wallOwner.username == currentUsername" class="form-horizontal" name="feedForm">
@@ -102,7 +105,10 @@
                 <span class="label label-danger error" ng-show="feedForm.commentBox.$error.minlength">
                         Min post length is 2 letters!
                 </span>
-            <textarea name="commentBox" ng-model="post.postContent" minlength="2" required id="feedCommentBox" placeholder="Enter message"></textarea>
+                <span class="label label-danger error" ng-show="feedForm.commentBox.$error.maxlength">
+                                    Min length is 400 letters!
+                </span>
+            <textarea name="commentBox" ng-model="post.postContent" ng-minlength="2" ng-maxlength="400" required id="feedCommentBox" placeholder="Enter message"></textarea>
 
             <button ng-controller="postController" ng-click="addWallPost(post)" ng-disabled="feedForm.$invalid" class="btn btn-success btn-post-feed">Post <i class="fa fa-comment"></i></button>
         </form>
