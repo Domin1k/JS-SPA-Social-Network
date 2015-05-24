@@ -98,7 +98,7 @@
         <a href="" ng-if="wallPageSize > 2" ng-click="showLessFeedsOnWall()" class="btn btn-danger pull-right">Show less feeds <i class="fa fa-level-up"></i></a>
     </div>
     <div class="col-md-4 postBoxContainer">
-        <form ng-if="wallFeeds[0].wallOwner.isFriend || wallFeeds[0].wallOwner.username == currentUsername" class="form-horizontal" name="feedForm">
+        <form ng-if="wallFeeds[0].wallOwner.isFriend || wallFeeds[0].wallOwner.username == currentUsername || userOnMyWall == currentUsername" class="form-horizontal" name="feedForm">
             <div>
                 <label for="feedCommentBox">Make post on {{wallFeeds[0].wallOwner.name}}'s wall</label>
             </div>

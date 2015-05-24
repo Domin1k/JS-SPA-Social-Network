@@ -186,6 +186,7 @@ socialNetwork.controller('userController', function ($scope, $location, $http, $
     };
     
     $scope.getWallsPost = function (username, pageSize) {
+        $scope.userOnMyWall = username;
         if (username) {
             if (pageSize) {
                 authorizationService.getUserWallFeed(username, pageSize)
