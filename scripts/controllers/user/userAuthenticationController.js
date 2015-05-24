@@ -26,7 +26,7 @@ socialNetwork.controller('userAuthenticationController', function ($scope, $loca
                 authorizationService.setUserCredentials(data);
                 $location.path('/users/feeds');
             }, function (error) {
-                notifyService.showError('Register failed ', error);
+                notifyService.showError('Register failed. Username/email already taken.', error);
             });
     };
 

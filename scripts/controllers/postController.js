@@ -31,7 +31,6 @@ socialNetwork.controller('postController', function ($scope, $http, $route, $rou
         }
     };
     $scope.addWallPost = function (postData) {
-        console.log(postData);
         postData['username'] = $routeParams.username;
         postService.addPost(postData)
             .then(function (data) {
